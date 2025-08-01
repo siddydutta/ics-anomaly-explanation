@@ -1,2 +1,5 @@
 # Virtual Environment
 venv/
+
+# Raw Data
+data/

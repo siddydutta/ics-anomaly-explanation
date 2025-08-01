@@ -1,0 +1,771 @@
+[
+    {
+        "attack_number": 0,
+        "true_label": "MV101",
+        "attributions": [
+            {
+                "feature": "MV101",
+                "score": 17.56
+            },
+            {
+                "feature": "MV201",
+                "score": 15.42
+            },
+            {
+                "feature": "P101",
+                "score": 15.02
+            },
+            {
+                "feature": "PIT502",
+                "score": 12.37
+            },
+            {
+                "feature": "P203",
+                "score": 9.93
+            }
+        ]
+    },
+    {
+        "attack_number": 1,
+        "true_label": "P102",
+        "attributions": [
+            {
+                "feature": "P102",
+                "score": 20.43
+            },
+            {
+                "feature": "MV101",
+                "score": 16.12
+            },
+            {
+                "feature": "FIT101",
+                "score": 10.25
+            },
+            {
+                "feature": "P302",
+                "score": 8.59
+            },
+            {
+                "feature": "PIT502",
+                "score": 8.19
+            }
+        ]
+    },
+    {
+        "attack_number": 2,
+        "true_label": "LIT101",
+        "attributions": [
+            {
+                "feature": "PIT502",
+                "score": 19.45
+            },
+            {
+                "feature": "P101",
+                "score": 16.89
+            },
+            {
+                "feature": "MV201",
+                "score": 13.31
+            },
+            {
+                "feature": "P203",
+                "score": 11.5
+            },
+            {
+                "feature": "P205",
+                "score": 10.77
+            }
+        ]
+    },
+    {
+        "attack_number": 3,
+        "true_label": "AIT202",
+        "attributions": [
+            {
+                "feature": "AIT202",
+                "score": 68.8
+            },
+            {
+                "feature": "P203",
+                "score": 10.28
+            },
+            {
+                "feature": "P101",
+                "score": 7.54
+            },
+            {
+                "feature": "P205",
+                "score": 6.33
+            },
+            {
+                "feature": "AIT502",
+                "score": 6.13
+            }
+        ]
+    },
+    {
+        "attack_number": 4,
+        "true_label": "LIT301",
+        "attributions": [
+            {
+                "feature": "PIT502",
+                "score": 18.64
+            },
+            {
+                "feature": "LIT301",
+                "score": 16.57
+            },
+            {
+                "feature": "P101",
+                "score": 13.96
+            },
+            {
+                "feature": "MV201",
+                "score": 13.12
+            },
+            {
+                "feature": "P203",
+                "score": 10.77
+            }
+        ]
+    },
+    {
+        "attack_number": 5,
+        "true_label": "DPIT301",
+        "attributions": [
+            {
+                "feature": "DPIT301",
+                "score": 27.47
+            },
+            {
+                "feature": "MV303",
+                "score": 16.3
+            },
+            {
+                "feature": "MV304",
+                "score": 14.52
+            },
+            {
+                "feature": "MV302",
+                "score": 12.11
+            },
+            {
+                "feature": "P302",
+                "score": 11.77
+            }
+        ]
+    },
+    {
+        "attack_number": 6,
+        "true_label": "FIT401",
+        "attributions": [
+            {
+                "feature": "FIT401",
+                "score": 52.21
+            },
+            {
+                "feature": "PIT502",
+                "score": 9.89
+            },
+            {
+                "feature": "LIT401",
+                "score": 6.5
+            },
+            {
+                "feature": "MV101",
+                "score": 6.42
+            },
+            {
+                "feature": "P205",
+                "score": 5.18
+            }
+        ]
+    },
+    {
+        "attack_number": 7,
+        "true_label": "MV304",
+        "attributions": []
+    },
+    {
+        "attack_number": 8,
+        "true_label": "LIT301",
+        "attributions": []
+    },
+    {
+        "attack_number": 9,
+        "true_label": "MV303",
+        "attributions": []
+    },
+    {
+        "attack_number": 10,
+        "true_label": "AIT504",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 11.72
+            },
+            {
+                "feature": "MV303",
+                "score": 10.69
+            },
+            {
+                "feature": "MV301",
+                "score": 9.81
+            },
+            {
+                "feature": "P602",
+                "score": 9.6
+            },
+            {
+                "feature": "P302",
+                "score": 8.88
+            }
+        ]
+    },
+    {
+        "attack_number": 11,
+        "true_label": "AIT504",
+        "attributions": [
+            {
+                "feature": "AIT504",
+                "score": 73.12
+            },
+            {
+                "feature": "AIT201",
+                "score": 5.97
+            },
+            {
+                "feature": "P205",
+                "score": 4.98
+            },
+            {
+                "feature": "P101",
+                "score": 4.15
+            },
+            {
+                "feature": "PIT502",
+                "score": 4.04
+            }
+        ]
+    },
+    {
+        "attack_number": 12,
+        "true_label": "LIT101",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 25.82
+            },
+            {
+                "feature": "AIT503",
+                "score": 17.06
+            },
+            {
+                "feature": "P101",
+                "score": 9.43
+            },
+            {
+                "feature": "AIT402",
+                "score": 7.67
+            },
+            {
+                "feature": "AIT501",
+                "score": 7.64
+            }
+        ]
+    },
+    {
+        "attack_number": 13,
+        "true_label": "UV401",
+        "attributions": [
+            {
+                "feature": "UV401",
+                "score": 39.47
+            },
+            {
+                "feature": "P501",
+                "score": 29.45
+            },
+            {
+                "feature": "FIT504",
+                "score": 14.09
+            },
+            {
+                "feature": "FIT503",
+                "score": 6.12
+            },
+            {
+                "feature": "AIT201",
+                "score": 4.51
+            }
+        ]
+    },
+    {
+        "attack_number": 14,
+        "true_label": "DPIT301",
+        "attributions": [
+            {
+                "feature": "DPIT301",
+                "score": 26.56
+            },
+            {
+                "feature": "P302",
+                "score": 24.32
+            },
+            {
+                "feature": "AIT201",
+                "score": 15.92
+            },
+            {
+                "feature": "FIT301",
+                "score": 8.9
+            },
+            {
+                "feature": "MV302",
+                "score": 8.19
+            }
+        ]
+    },
+    {
+        "attack_number": 15,
+        "true_label": "P203",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 44.38
+            },
+            {
+                "feature": "P203",
+                "score": 11.65
+            },
+            {
+                "feature": "P205",
+                "score": 9.14
+            },
+            {
+                "feature": "AIT402",
+                "score": 8.77
+            },
+            {
+                "feature": "P302",
+                "score": 8.15
+            }
+        ]
+    },
+    {
+        "attack_number": 16,
+        "true_label": "LIT401",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 40.29
+            },
+            {
+                "feature": "P101",
+                "score": 13.03
+            },
+            {
+                "feature": "P302",
+                "score": 9.75
+            },
+            {
+                "feature": "MV302",
+                "score": 7.66
+            },
+            {
+                "feature": "P203",
+                "score": 7.38
+            }
+        ]
+    },
+    {
+        "attack_number": 17,
+        "true_label": "P101",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 59.39
+            },
+            {
+                "feature": "MV101",
+                "score": 11.33
+            },
+            {
+                "feature": "AIT501",
+                "score": 9.61
+            },
+            {
+                "feature": "P102",
+                "score": 6.15
+            },
+            {
+                "feature": "AIT402",
+                "score": 4.61
+            }
+        ]
+    },
+    {
+        "attack_number": 18,
+        "true_label": "LIT401",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 61.26
+            },
+            {
+                "feature": "MV101",
+                "score": 7.5
+            },
+            {
+                "feature": "AIT501",
+                "score": 7.33
+            },
+            {
+                "feature": "MV302",
+                "score": 5.45
+            },
+            {
+                "feature": "LIT401",
+                "score": 5.21
+            }
+        ]
+    },
+    {
+        "attack_number": 19,
+        "true_label": "P302",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 56.4
+            },
+            {
+                "feature": "P302",
+                "score": 10.05
+            },
+            {
+                "feature": "MV302",
+                "score": 9.21
+            },
+            {
+                "feature": "AIT501",
+                "score": 6.6
+            },
+            {
+                "feature": "MV101",
+                "score": 5.51
+            }
+        ]
+    },
+    {
+        "attack_number": 20,
+        "true_label": "P101",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 59.11
+            },
+            {
+                "feature": "MV101",
+                "score": 8.12
+            },
+            {
+                "feature": "P101",
+                "score": 5.98
+            },
+            {
+                "feature": "MV302",
+                "score": 5.74
+            },
+            {
+                "feature": "MV201",
+                "score": 5.71
+            }
+        ]
+    },
+    {
+        "attack_number": 21,
+        "true_label": "LIT401",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 49.05
+            },
+            {
+                "feature": "MV201",
+                "score": 10.1
+            },
+            {
+                "feature": "MV304",
+                "score": 8.6
+            },
+            {
+                "feature": "P101",
+                "score": 8.23
+            },
+            {
+                "feature": "MV302",
+                "score": 7.08
+            }
+        ]
+    },
+    {
+        "attack_number": 22,
+        "true_label": "LIT301",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 60.01
+            },
+            {
+                "feature": "LIT301",
+                "score": 10.15
+            },
+            {
+                "feature": "P101",
+                "score": 9.67
+            },
+            {
+                "feature": "P203",
+                "score": 7.01
+            },
+            {
+                "feature": "MV201",
+                "score": 6.96
+            }
+        ]
+    },
+    {
+        "attack_number": 23,
+        "true_label": "LIT101",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 44.0
+            },
+            {
+                "feature": "MV303",
+                "score": 13.85
+            },
+            {
+                "feature": "MV304",
+                "score": 12.86
+            },
+            {
+                "feature": "MV302",
+                "score": 7.88
+            },
+            {
+                "feature": "MV101",
+                "score": 7.58
+            }
+        ]
+    },
+    {
+        "attack_number": 24,
+        "true_label": "P101",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 61.92
+            },
+            {
+                "feature": "P101",
+                "score": 14.21
+            },
+            {
+                "feature": "MV101",
+                "score": 6.16
+            },
+            {
+                "feature": "MV302",
+                "score": 5.84
+            },
+            {
+                "feature": "AIT501",
+                "score": 5.25
+            }
+        ]
+    },
+    {
+        "attack_number": 25,
+        "true_label": "P101",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 48.33
+            },
+            {
+                "feature": "MV304",
+                "score": 13.51
+            },
+            {
+                "feature": "P101",
+                "score": 10.45
+            },
+            {
+                "feature": "MV302",
+                "score": 8.07
+            },
+            {
+                "feature": "MV303",
+                "score": 6.36
+            }
+        ]
+    },
+    {
+        "attack_number": 26,
+        "true_label": "LIT101",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 63.98
+            },
+            {
+                "feature": "P101",
+                "score": 12.35
+            },
+            {
+                "feature": "MV201",
+                "score": 7.32
+            },
+            {
+                "feature": "LIT101",
+                "score": 6.32
+            },
+            {
+                "feature": "P205",
+                "score": 5.31
+            }
+        ]
+    },
+    {
+        "attack_number": 27,
+        "true_label": "FIT502",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 31.11
+            },
+            {
+                "feature": "FIT504",
+                "score": 28.08
+            },
+            {
+                "feature": "FIT503",
+                "score": 11.2
+            },
+            {
+                "feature": "PIT501",
+                "score": 6.67
+            },
+            {
+                "feature": "PIT502",
+                "score": 5.97
+            }
+        ]
+    },
+    {
+        "attack_number": 28,
+        "true_label": "AIT402",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 51.51
+            },
+            {
+                "feature": "AIT402",
+                "score": 11.6
+            },
+            {
+                "feature": "AIT502",
+                "score": 9.51
+            },
+            {
+                "feature": "P101",
+                "score": 9.11
+            },
+            {
+                "feature": "P302",
+                "score": 7.91
+            }
+        ]
+    },
+    {
+        "attack_number": 29,
+        "true_label": "FIT401",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 53.72
+            },
+            {
+                "feature": "FIT401",
+                "score": 29.55
+            },
+            {
+                "feature": "AIT501",
+                "score": 8.17
+            },
+            {
+                "feature": "MV101",
+                "score": 5.74
+            },
+            {
+                "feature": "P205",
+                "score": 4.99
+            }
+        ]
+    },
+    {
+        "attack_number": 30,
+        "true_label": "FIT401",
+        "attributions": [
+            {
+                "feature": "UV401",
+                "score": 30.6
+            },
+            {
+                "feature": "P501",
+                "score": 26.58
+            },
+            {
+                "feature": "AIT201",
+                "score": 24.41
+            },
+            {
+                "feature": "FIT401",
+                "score": 13.92
+            },
+            {
+                "feature": "FIT504",
+                "score": 10.75
+            }
+        ]
+    },
+    {
+        "attack_number": 31,
+        "true_label": "LIT301",
+        "attributions": [
+            {
+                "feature": "AIT201",
+                "score": 64.64
+            },
+            {
+                "feature": "AIT501",
+                "score": 10.18
+            },
+            {
+                "feature": "MV101",
+                "score": 7.84
+            },
+            {
+                "feature": "MV302",
+                "score": 6.83
+            },
+            {
+                "feature": "MV304",
+                "score": 5.46
+            }
+        ]
+    }
+]
