@@ -1,5 +1,11 @@
+# Extra Python Files
+__pycache__/
+
 # Virtual Environment
 venv/
 
 # Raw Data
 data/
+
+# Environment Variables
+.env

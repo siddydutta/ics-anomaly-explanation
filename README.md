@@ -8,6 +8,7 @@ cd ics-anomaly-explanation
 python3.12 -m venv venv/
 source venv/bin/activate
 pip install -r requirements.txt
+cp .env.development .env
 ```
 
 ## ICS Anomaly Attributions
