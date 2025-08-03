@@ -1,0 +1,16 @@
+{
+  "variant": "FULL",
+  "attack_id": 0,
+  "top_feature": "MV101",
+  "stages": [
+    {
+      "stage_name": "swat_document_retrieval",
+      "latency_seconds": 1.2827758749772329,
+      "embedding_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "retrieved_docs": 3
+    }
+  ],
+  "total_latency": 1.282886500004679
+}
