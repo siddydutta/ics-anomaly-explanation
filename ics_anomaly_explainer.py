@@ -173,12 +173,10 @@ class ICSAnomalyExplainer:
         else:
             filters = None
         retrieve_swat_start_time = time.perf_counter()
-        self.logger.info(f"[FILTERS] SWaT: {filters}")
         swat_doc_nodes = self.__retrieve_documents(
             query=self.top_feature, filters=filters
         )
         retrieve_swat_latency = time.perf_counter() - retrieve_swat_start_time
-        self.logger.info(f"[DOCUMENTS] SWaT: {swat_doc_nodes}")
         self.nodes.extend(swat_doc_nodes)
         self.__add_stage_metrics(
             stage_name="swat_document_retrieval",
@@ -196,8 +194,6 @@ class ICSAnomalyExplainer:
                 query=reasoning, filters=filters
             )
             retrieve_mitre_latency = time.perf_counter() - retrieve_mitre_start_time
-            self.logger.info(f"[FILTERS] MITRE: {filters}")
-            self.logger.info(f"[DOCUMENTS] MITRE: {mitre_doc_nodes}")
             self.nodes.extend(mitre_doc_nodes)
             self.__add_stage_metrics(
                 stage_name="mitre_document_retrieval",
@@ -216,7 +212,6 @@ class ICSAnomalyExplainer:
         explanation_start_time = time.perf_counter()
         explanation = self.generate_explanation()
         explanation_latency = time.perf_counter() - explanation_start_time
-        self.logger.info(f"[EXPLANATION] {explanation}")
         self.__add_stage_metrics(
             stage_name="explanation_generation",
             latency=explanation_latency,
