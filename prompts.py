@@ -13,12 +13,13 @@ identify at most 3 most relevant tactics that could be associated with an anomal
 in this component. Consider both the component's function and potential
 attack vectors that could target this type of industrial control system component.
 
-Your selected tactics will be used to retrieve specific ICS attack techniques 
+Your selected tactics and reasoning will be used to retrieve specific ICS attack techniques 
 that will help explain the anomaly's potential security implications.
 """
 
 BASELINE_EXPLANATION_PROMPT = """
 An anomaly was detected in component: {top_feature}
+You are an expert in industrial control systems security.
 
 Context about the component from SWaT documentation:
 {context}
@@ -35,6 +36,7 @@ for ICS framework to identify potential cyber attack scenarios and security miti
 """
 
 NO_MITRE_EXPLANATION_PROMPT = """
+You are an expert in industrial control systems security.
 An anomaly was detected in component: {top_feature}
             
 Context about the component from SWaT documentation:
@@ -52,6 +54,7 @@ for ICS framework to identify potential cyber attack scenarios and security miti
 """
 
 FULL_EXPLANATION_PROMPT = """
+You are an expert in industrial control systems security.
 An anomaly was detected in component: {top_feature}
 
 Context includes SWaT system documentation and relevant MITRE ATT&CK ICS techniques:
