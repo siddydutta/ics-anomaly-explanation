@@ -20,13 +20,18 @@ that will help explain the anomaly's potential security implications.
 BASELINE_EXPLANATION_PROMPT = """
 An anomaly was detected in component: {top_feature}
 
+Context about the component from SWaT documentation:
+{context}
+
 Provide a comprehensive explanation of this anomaly including:
 1. What this component does and its role in the SWaT water treatment system
-2. Possible operational causes of the anomaly (sensor drift, mechanical failure, etc.)
-3. Potential impacts on the water treatment process if not addressed
-4. Recommended operational mitigation strategies
+2. Possible causes of the anomaly (both operational failures and potential cyber threats)
+3. Potential impacts if not addressed (operational disruption and security risks)
+4. Recommended mitigation strategies (technical, operational, and security measures)
 
-Focus on operational and engineering aspects of the anomaly.
+Base your analysis primarily on the provided SWaT system context, but also draw 
+upon your knowledge of industrial control systems security and the MITRE ATT&CK 
+for ICS framework to identify potential cyber attack scenarios and security mitigations.
 """
 
 NO_MITRE_EXPLANATION_PROMPT = """
@@ -41,9 +46,9 @@ Provide a comprehensive explanation of this anomaly including:
 3. Potential impacts if not addressed (operational disruption and security risks)
 4. Recommended mitigation strategies (technical, operational, and security measures)
 
-Draw upon your knowledge of industrial control systems security and the MITRE ATT&CK 
-for ICS framework to identify potential cyber attack scenarios, but prioritize 
-insights that can be derived from the provided SWaT system documentation.
+Base your analysis primarily on the provided SWaT system context, but also draw 
+upon your knowledge of industrial control systems security and the MITRE ATT&CK 
+for ICS framework to identify potential cyber attack scenarios and security mitigations.
 """
 
 FULL_EXPLANATION_PROMPT = """

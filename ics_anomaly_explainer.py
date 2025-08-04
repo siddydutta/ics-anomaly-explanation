@@ -34,7 +34,7 @@ from models import (
     StageMetrics,
     TacticsOutput,
 )
-from prompt import EXPLANATION_PROMPT_MAP, MITRE_FILTER_INFERENCE
+from prompts import EXPLANATION_PROMPT_MAP, MITRE_FILTER_INFERENCE
 
 
 class ICSAnomalyExplainer:
@@ -153,21 +153,9 @@ class ICSAnomalyExplainer:
             ]
         )
         prompt = EXPLANATION_PROMPT_MAP[self.variant]
-        if self.variant == ExperimentVariant.BASELINE:
-            retriever = self.index.as_retriever(
-                retrieval_mode=RetrievalMode.CHUNKS,
-                dense_similarity_top_k=3,
-                sparse_similarity_top_k=3,
-                alpha=0.5,
-                enable_reranking=True,
-                rerank_top_n=3,
-            )
-            prompt = prompt.format(top_feature=self.top_feature)
-        else:
-            retriever = None  # context is provided in the prompt
-            prompt = prompt.format(top_feature=self.top_feature, context=context)
+        prompt = prompt.format(top_feature=self.top_feature, context=context)
         query_engine = RetrieverQueryEngine.from_args(
-            retriever=retriever,
+            retriever=None,  # since context is provided directly in the prompt
             llm=self.llm.as_structured_llm(output_cls=ExplanationOutput),
         )
         response = query_engine.query(prompt)
