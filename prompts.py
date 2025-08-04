@@ -7,72 +7,63 @@ Context about the anomalous component:
 {context}        
 
 Available MITRE ATT&CK ICS tactics: {MITRE_TACTICS}
-        
-Based on the component information and its role in the SWaT testbed process,
-identify at most 3 most relevant tactics that could be associated with an anomaly
-in this component. Consider both the component's function and potential
-attack vectors that could target this type of industrial control system component.
 
-Your selected tactics and reasoning will be used to retrieve specific ICS attack techniques 
-that will help explain the anomaly's potential security implications.
+Task: Identify the 3 most relevant tactics that could be associated with this component anomaly.
+
+Consider:
+- The component's specific function in the SWaT testbed
+- Potential attack vectors targeting this component type
+- Common ICS vulnerabilities for similar components
+
+Your selections will be used to retrieve specific ICS attack techniques for anomaly explanation.
 """
 
 BASELINE_EXPLANATION_PROMPT = """
-An anomaly was detected in component: {top_feature}
 You are an expert in industrial control systems security.
+
+An anomaly was detected in component: {top_feature}
 
 Context about the component from SWaT documentation:
 {context}
 
-Provide a comprehensive explanation of this anomaly including:
-1. What this component does and its role in the SWaT water treatment system
-2. Possible causes of the anomaly (both operational failures and potential cyber threats)
-3. Potential impacts if not addressed (operational disruption and security risks)
-4. Recommended mitigation strategies (technical, operational, and security measures)
+Please provide a comprehensive explanation of this anomaly including:
+1. Component function and role in the SWaT water treatment system phase
+2. Possible causes (operational failures and potential cyber threats)
+3. Potential impacts if unaddressed (stage-level and system-wide risks)
+4. Recommended mitigation strategies (technical and operational measures)
 
-Base your analysis primarily on the provided SWaT system context, but also draw 
-upon your knowledge of industrial control systems security and the MITRE ATT&CK 
-for ICS framework to identify potential cyber attack scenarios and security mitigations.
-"""
+Focus on specifics rather than generalities. Analyze:
+- How this component's anomaly would specifically impact its directly connected components
+- The unique attack surface and vulnerabilities of this particular component
+- Specific failure modes and their downstream consequences in the SWaT process
 
-NO_MITRE_EXPLANATION_PROMPT = """
-You are an expert in industrial control systems security.
-An anomaly was detected in component: {top_feature}
-            
-Context about the component from SWaT documentation:
-{context}
-
-Provide a comprehensive explanation of this anomaly including:
-1. What this component does and its role in the SWaT water treatment system
-2. Possible causes of the anomaly (both operational failures and potential cyber threats)
-3. Potential impacts if not addressed (operational disruption and security risks)
-4. Recommended mitigation strategies (technical, operational, and security measures)
-
-Base your analysis primarily on the provided SWaT system context, but also draw 
-upon your knowledge of industrial control systems security and the MITRE ATT&CK 
-for ICS framework to identify potential cyber attack scenarios and security mitigations.
+Base your analysis on the provided SWaT system context. Additionally, leverage your knowledge to reference specific MITRE ATT&CK for ICS framework techniques to identify potential cyber attack causes and security mitigations.
 """
 
 FULL_EXPLANATION_PROMPT = """
 You are an expert in industrial control systems security.
+
 An anomaly was detected in component: {top_feature}
 
-Context includes SWaT system documentation and relevant MITRE ATT&CK ICS techniques:
+Context about the component from SWaT documentation:
 {context}
 
-Provide a comprehensive explanation of this anomaly including:
-1. What this component does and its role in the SWaT water treatment system
-2. Possible causes of the anomaly (operational failures and cyber attack techniques from context)
-3. Potential impacts if not addressed (operational and security consequences)
-4. Recommended mitigation strategies (addressing both operational and security aspects)
+Please provide a comprehensive explanation of this anomaly including:
+1. Component function and role in the SWaT water treatment system phase
+2. Possible causes (operational failures and potential cyber threats)
+3. Potential impacts if unaddressed (stage-level and system-wide risks)
+4. Recommended mitigation strategies (technical and operational measures)
 
-Base your analysis strictly on the provided context. When discussing potential attack 
-scenarios, reference the specific MITRE ATT&CK techniques provided. For operational 
-aspects, use the SWaT system documentation.
+Focus on specifics rather than generalities. Analyze:
+- How this component's anomaly would specifically impact its directly connected components
+- The unique attack surface and vulnerabilities of this particular component
+- Specific failure modes and their downstream consequences in the SWaT process
+
+Base your analysis strictly on the provided context. Use the SWaT system documentation for impact analysis and reference specific MITRE ATT&CK techniques for identifying potential cyber attack causes and security mitigations.
 """
 
 EXPLANATION_PROMPT_MAP = {
     ExperimentVariant.BASELINE: BASELINE_EXPLANATION_PROMPT,
-    ExperimentVariant.NO_MITRE: NO_MITRE_EXPLANATION_PROMPT,
+    ExperimentVariant.NO_MITRE: BASELINE_EXPLANATION_PROMPT,  # same prompt, since no MITRE context
     ExperimentVariant.FULL: FULL_EXPLANATION_PROMPT,
 }
