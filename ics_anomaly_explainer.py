@@ -123,12 +123,10 @@ class ICSAnomalyExplainer:
             context=context,
             MITRE_TACTICS=MITRE_TACTICS,
         )
-        response: TacticsOutput = self.llm.as_structured_llm(
-            output_cls=TacticsOutput
-        ).complete(
+        response = self.llm.as_structured_llm(output_cls=TacticsOutput).complete(
             prompt=prompt,
         )
-        tactics = response.tactics
+        output = TacticsOutput.model_validate(json.loads(response.text))
         filters = MetadataFilters(
             filters=[
                 MetadataFilter(
@@ -139,11 +137,13 @@ class ICSAnomalyExplainer:
                     operator=FilterOperator.EQUAL_TO,
                     value="attack_technique",
                 ),
-                MetadataFilter(key="tactic", operator=FilterOperator.IN, value=tactics),
+                MetadataFilter(
+                    key="tactic", operator=FilterOperator.IN, value=output.tactics
+                ),
             ],
             condition=FilterCondition.AND,
         )
-        return filters, response.reasoning
+        return filters, output.reasoning
 
     def generate_explanation(self) -> ExplanationOutput:
         context = "\n---\n".join(
@@ -157,7 +157,8 @@ class ICSAnomalyExplainer:
         response = self.llm.as_structured_llm(output_cls=ExplanationOutput).complete(
             prompt=prompt
         )
-        return response
+        output = ExplanationOutput.model_validate(json.loads(response.text))
+        return output
 
     def run_experiment(self) -> ExperimentResult:
         """Run a complete experiment on a specific attack for a given variant."""
