@@ -27,8 +27,14 @@ from config import (
     OPENAI_TEMPERATURE,
 )
 from constants import MITRE_TACTICS
-from models import ExperimentResult, ExperimentVariant, StageMetrics, TacticsOutput
-from prompt import MITRE_FILTER_INFERENCE
+from models import (
+    ExperimentResult,
+    ExperimentVariant,
+    ExplanationOutput,
+    StageMetrics,
+    TacticsOutput,
+)
+from prompt import EXPLANATION_PROMPT_MAP, MITRE_FILTER_INFERENCE
 
 
 class ICSAnomalyExplainer:
@@ -139,6 +145,34 @@ class ICSAnomalyExplainer:
         )
         return filters, response.response.reasoning
 
+    def generate_explanation(self) -> ExplanationOutput:
+        context = "\n---\n".join(
+            [
+                f"Source Type: {node.metadata.get('doc_type', 'Unknown')}\n{node.text}"
+                for node in self.nodes
+            ]
+        )
+        prompt = EXPLANATION_PROMPT_MAP[self.variant]
+        if self.variant == ExperimentVariant.BASELINE:
+            retriever = self.index.as_retriever(
+                retrieval_mode=RetrievalMode.CHUNKS,
+                dense_similarity_top_k=3,
+                sparse_similarity_top_k=3,
+                alpha=0.5,
+                enable_reranking=True,
+                rerank_top_n=3,
+            )
+            prompt = prompt.format(top_feature=self.top_feature)
+        else:
+            retriever = None  # context is provided in the prompt
+            prompt = prompt.format(top_feature=self.top_feature, context=context)
+        query_engine = RetrieverQueryEngine.from_args(
+            retriever=retriever,
+            llm=self.llm.as_structured_llm(output_cls=ExplanationOutput),
+        )
+        response = query_engine.query(prompt)
+        return response.response
+
     def run_experiment(self) -> ExperimentResult:
         """Run a complete experiment on a specific attack for a given variant."""
         total_start_time = time.perf_counter()
@@ -180,6 +214,7 @@ class ICSAnomalyExplainer:
                 retrieved_docs=len(mitre_doc_nodes),
             )
         else:
+            reasoning = None
             self.__add_stage_metrics(
                 stage_name="mitre_document_retrieval",
                 latency=0.0,
@@ -187,13 +222,13 @@ class ICSAnomalyExplainer:
             )
 
         # Step 3: Generate final explanation
-        # explanation_start_time = time.perf_counter()
-        # explanation = self.generate_explanation()
-        # explanation_latency = time.perf_counter() - explanation_start_time
-        # self.__add_stage_metrics(
-        #     stage_name="explanation_generation",
-        #     latency=explanation_latency,
-        # )
+        explanation_start_time = time.perf_counter()
+        explanation = self.generate_explanation()
+        explanation_latency = time.perf_counter() - explanation_start_time
+        self.__add_stage_metrics(
+            stage_name="explanation_generation",
+            latency=explanation_latency,
+        )
 
         total_latency = time.perf_counter() - total_start_time
         context_nodes = [node.node.text for node in self.nodes]
@@ -202,7 +237,8 @@ class ICSAnomalyExplainer:
             attack_id=self.attack_id,
             top_feature=self.top_feature,
             stages=self.stages,
-            # explanation=explanation.model_dump(),
+            inference=reasoning,
+            explanation=explanation.model_dump(),
             total_latency=total_latency,
             context_nodes=context_nodes,
         )

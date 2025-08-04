@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
+from typing import Optional
 
 from .stage import StageMetrics
 
@@ -18,6 +19,7 @@ class ExperimentResult:
     attack_id: int
     top_feature: str
     stages: list[StageMetrics]
-    # explanation: dict[str, any]
+    inference: Optional[str]
+    explanation: dict[str, any]
     total_latency: float
     context_nodes: list[str]
