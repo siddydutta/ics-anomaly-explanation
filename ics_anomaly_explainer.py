@@ -14,6 +14,7 @@ from llama_cloud import (
     RetrievalMode,
 )
 from llama_index.core.callbacks import CallbackManager, TokenCountingHandler
+from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.core.schema import NodeWithScore
 from llama_index.indices.managed.llama_cloud import LlamaCloudIndex
 from llama_index.llms.openai import OpenAI
@@ -25,7 +26,9 @@ from config import (
     OPENAI_MODEL,
     OPENAI_TEMPERATURE,
 )
-from models import ExperimentResult, ExperimentVariant, StageMetrics
+from constants import MITRE_TACTICS
+from models import ExperimentResult, ExperimentVariant, StageMetrics, TacticsOutput
+from prompt import MITRE_FILTER_INFERENCE
 
 
 class ICSAnomalyExplainer:
@@ -89,10 +92,10 @@ class ICSAnomalyExplainer:
                 break
         return MetadataFilters(filters=filters, condition=FilterCondition.OR)
 
-    def __retrieve_swat_documents(
+    def __retrieve_documents(
         self, query: str, filters: Optional[MetadataFilters] = None, top_k: int = 3
     ) -> list[NodeWithScore]:
-        """Retrieve SWaT document chunks from the index."""
+        """Retrieve document chunks from the index."""
         retriever = self.index.as_retriever(
             retrieval_mode=RetrievalMode.CHUNKS,
             dense_similarity_top_k=top_k,
@@ -103,6 +106,38 @@ class ICSAnomalyExplainer:
             filters=filters,
         )
         return retriever.retrieve(query)
+
+    def __infer_mitre_filters(
+        self, top_feature: str, swat_nodes: list[NodeWithScore]
+    ) -> tuple[MetadataFilters, str]:
+        """Infer MITRE ATT&CK filters based on the top attribution feature."""
+        context = "\n".join([node.text for node in swat_nodes])
+        prompt = MITRE_FILTER_INFERENCE.format(
+            top_feature=top_feature,
+            context=context,
+            MITRE_TACTICS=MITRE_TACTICS,
+        )
+        query_engine = RetrieverQueryEngine.from_args(
+            retriever=None,  # since context is provided directly in the prompt
+            llm=self.llm.as_structured_llm(output_cls=TacticsOutput),
+        )
+        response = query_engine.query(prompt)
+        tactics = response.response.tactics
+        filters = MetadataFilters(
+            filters=[
+                MetadataFilter(
+                    key="source", operator=FilterOperator.EQUAL_TO, value="MITRE_ICS"
+                ),
+                MetadataFilter(
+                    key="doc_type",
+                    operator=FilterOperator.EQUAL_TO,
+                    value="attack_technique",
+                ),
+                MetadataFilter(key="tactic", operator=FilterOperator.IN, value=tactics),
+            ],
+            condition=FilterCondition.AND,
+        )
+        return filters, response.response.reasoning
 
     def run_experiment(self) -> ExperimentResult:
         """Run a complete experiment on a specific attack for a given variant."""
@@ -117,7 +152,7 @@ class ICSAnomalyExplainer:
         else:
             filters = None
         retrieve_swat_start_time = time.perf_counter()
-        swat_doc_nodes = self.__retrieve_swat_documents(
+        swat_doc_nodes = self.__retrieve_documents(
             query=self.top_feature, filters=filters
         )
         retrieve_swat_latency = time.perf_counter() - retrieve_swat_start_time
@@ -129,32 +164,47 @@ class ICSAnomalyExplainer:
         )
 
         # Step 2: Retrieve MITRE ATT&CK tactics
-        # if self.variant == ExperimentVariant.FULL:
-        #     retrieve_mitre_start_time = time.perf_counter()
+        if self.variant == ExperimentVariant.FULL:
+            retrieve_mitre_start_time = time.perf_counter()
+            filters, reasoning = self.__infer_mitre_filters(
+                top_feature=self.top_feature, swat_nodes=swat_doc_nodes
+            )
+            mitre_doc_nodes = self.__retrieve_documents(
+                query=reasoning, filters=filters
+            )
+            retrieve_mitre_latency = time.perf_counter() - retrieve_mitre_start_time
+            self.nodes.extend(mitre_doc_nodes)
+            self.__add_stage_metrics(
+                stage_name="mitre_document_retrieval",
+                latency=retrieve_mitre_latency,
+                retrieved_docs=len(mitre_doc_nodes),
+            )
+        else:
+            self.__add_stage_metrics(
+                stage_name="mitre_document_retrieval",
+                latency=0.0,
+                retrieved_docs=0,
+            )
 
-        #     retrieve_mitre_latency = time.perf_counter() - retrieve_mitre_start_time
-        #     self.nodes.extend(mitre_doc_nodes)
-        #     self.__add_stage_metrics(
-        #         stage_name="mitre_document_retrieval",
-        #         latency=retrieve_mitre_latency,
-        #         retrieved_docs=len(mitre_doc_nodes),
-        #     )
-        # else:
-        #     self.__add_stage_metrics(
-        #         stage_name="mitre_document_retrieval",
-        #         latency=0.0,
-        #         retrieved_docs=0,
-        #     )
+        # Step 3: Generate final explanation
+        # explanation_start_time = time.perf_counter()
+        # explanation = self.generate_explanation()
+        # explanation_latency = time.perf_counter() - explanation_start_time
+        # self.__add_stage_metrics(
+        #     stage_name="explanation_generation",
+        #     latency=explanation_latency,
+        # )
 
         total_latency = time.perf_counter() - total_start_time
+        context_nodes = [node.node.text for node in self.nodes]
         return ExperimentResult(
             variant=self.variant.value,
             attack_id=self.attack_id,
             top_feature=self.top_feature,
             stages=self.stages,
-            # final_explanation=explanation.model_dump(),
+            # explanation=explanation.model_dump(),
             total_latency=total_latency,
-            # context_nodes=context_nodes
+            context_nodes=context_nodes,
         )
 
     def save_results(self, output_dir: str, result: ExperimentResult) -> None:
