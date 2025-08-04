@@ -42,11 +42,11 @@ def main():
         explainer = ICSAnomalyExplainer(variant, args.attack)
         result = explainer.run_experiment()
         explainer.save_results(args.output_dir, result)
+        logger.info(
+            f"Experiment for attack {args.attack} with variant {args.variant} completed successfully"
+        )
     except Exception as e:
         logger.exception("Error running experiment")
-    logger.info(
-        f"Experiment for attack {args.attack} with variant {args.variant} completed successfully"
-    )
 
 
 if __name__ == "__main__":

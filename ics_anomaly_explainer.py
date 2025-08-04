@@ -123,12 +123,12 @@ class ICSAnomalyExplainer:
             context=context,
             MITRE_TACTICS=MITRE_TACTICS,
         )
-        query_engine = RetrieverQueryEngine.from_args(
-            retriever=None,  # since context is provided directly in the prompt
-            llm=self.llm.as_structured_llm(output_cls=TacticsOutput),
+        response: TacticsOutput = self.llm.as_structured_llm(
+            output_cls=TacticsOutput
+        ).complete(
+            prompt=prompt,
         )
-        response = query_engine.query(prompt)
-        tactics = response.response.tactics
+        tactics = response.tactics
         filters = MetadataFilters(
             filters=[
                 MetadataFilter(
@@ -143,7 +143,7 @@ class ICSAnomalyExplainer:
             ],
             condition=FilterCondition.AND,
         )
-        return filters, response.response.reasoning
+        return filters, response.reasoning
 
     def generate_explanation(self) -> ExplanationOutput:
         context = "\n---\n".join(
@@ -154,12 +154,10 @@ class ICSAnomalyExplainer:
         )
         prompt = EXPLANATION_PROMPT_MAP[self.variant]
         prompt = prompt.format(top_feature=self.top_feature, context=context)
-        query_engine = RetrieverQueryEngine.from_args(
-            retriever=None,  # since context is provided directly in the prompt
-            llm=self.llm.as_structured_llm(output_cls=ExplanationOutput),
+        response = self.llm.as_structured_llm(output_cls=ExplanationOutput).complete(
+            prompt=prompt
         )
-        response = query_engine.query(prompt)
-        return response.response
+        return response
 
     def run_experiment(self) -> ExperimentResult:
         """Run a complete experiment on a specific attack for a given variant."""

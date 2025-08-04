@@ -38,5 +38,5 @@ The system supports three distinct approaches for generating explanations for IC
    The most advanced variant combines both SWaT technical metadata filtering and MITRE ATT&CK metadata inference. Explanations are generated using the top feature attribution, enriched by comprehensive filtering from both sources.
 
 ```shell
-python generate_explanations.py --attack 0 --variant baseline --output-dir output/
+python generate_explanations.py --attack 0 --variant BASELINE --output-dir output/
 ```
