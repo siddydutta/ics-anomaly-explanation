@@ -1,0 +1,44 @@
+{
+  "variant": "BASELINE",
+  "attack_id": 0,
+  "top_feature": "MV101",
+  "stages": [
+    {
+      "stage_name": "swat_document_retrieval",
+      "latency_seconds": 3.1892355420004606,
+      "embedding_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "retrieved_docs": 3
+    },
+    {
+      "stage_name": "mitre_document_retrieval",
+      "latency_seconds": 0.0,
+      "embedding_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "retrieved_docs": 0
+    },
+    {
+      "stage_name": "explanation_generation",
+      "latency_seconds": 8.396188165999774,
+      "embedding_tokens": 0,
+      "input_tokens": 401,
+      "output_tokens": 353,
+      "retrieved_docs": 0
+    }
+  ],
+  "inference": null,
+  "explanation": {
+    "explanation": "The MV101 component is an electric actuated valve that controls the inlet of raw water into the treatment system. It plays a crucial role in regulating the flow of raw water from the supply source into the raw water tank, which is essential for maintaining the appropriate water levels for treatment processes. The valve's operation is critical for ensuring that the raw water supply is consistent and meets the necessary flow rates for subsequent treatment stages.",
+    "possible_cause": "Possible causes of the anomaly may include operational failures such as mechanical malfunctions of the valve actuator, blockages in the valve mechanism, or incorrect control signals from the PID controller. Additionally, potential cyber threats could involve unauthorized access to the control system, leading to manipulation of the valve's operation, or a denial-of-service attack that disrupts the control signals to the valve.",
+    "potential_impact": "If the anomaly is not addressed, it could lead to operational disruptions such as overfilling or underfilling of the raw water tank, which could compromise the treatment process and lead to inefficiencies. From a security perspective, unauthorized manipulation of the valve could result in unsafe water levels, potential flooding, or even contamination of the water supply, posing significant risks to public health and safety.",
+    "mitigation_strategy": "Recommended mitigation strategies include implementing regular maintenance checks and inspections of the MV101 valve to ensure its mechanical integrity. From a cybersecurity perspective, it is crucial to enforce strict access controls and authentication measures for the control systems, conduct regular security audits, and employ intrusion detection systems to monitor for unauthorized access attempts. Additionally, establishing incident response protocols and training staff on cybersecurity awareness can help mitigate risks."
+  },
+  "total_latency": 11.58689641700039,
+  "context_nodes": [
+    "Component: MV101\nDescription: Raw Water Inlet On/Off Valve\nDesign Specification: DN 25, Electric Actuated\nMaterial: PVC\nBrand Model: Burkert EV2650",
+    "Stage: P1\nName: Raw water supply & storage\nDescription: Stores and supplies raw water to the treatment process. Involves raw water tank, pumps, and initial flow measurement.\nComponents:\n- LIT101 (Raw water tank level sensor)\n- MV101 (Inlet control valve for raw water tank)\n- FIT101 (Raw water flow sensor)\n- P101 (Raw water pump)",
+    "Component: MV101\nConnects to: T101"
+  ]
+}

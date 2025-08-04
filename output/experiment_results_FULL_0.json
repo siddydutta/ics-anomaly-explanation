@@ -5,12 +5,43 @@
   "stages": [
     {
       "stage_name": "swat_document_retrieval",
-      "latency_seconds": 1.2827758749772329,
+      "latency_seconds": 1.844988333999936,
       "embedding_tokens": 0,
       "input_tokens": 0,
       "output_tokens": 0,
       "retrieved_docs": 3
+    },
+    {
+      "stage_name": "mitre_document_retrieval",
+      "latency_seconds": 8.535039832999246,
+      "embedding_tokens": 0,
+      "input_tokens": 384,
+      "output_tokens": 249,
+      "retrieved_docs": 3
+    },
+    {
+      "stage_name": "explanation_generation",
+      "latency_seconds": 7.854132209000454,
+      "embedding_tokens": 0,
+      "input_tokens": 1007,
+      "output_tokens": 373,
+      "retrieved_docs": 0
     }
   ],
-  "total_latency": 1.282886500004679
+  "inference": "The MV101 valve is critical for controlling the flow of raw water into the treatment process. An anomaly in this component could indicate an attempt to impair process control, as an attacker may seek to disrupt the water supply. Additionally, the tactic of inhibiting response functions is relevant, as manipulating the valve could prevent the system from responding to changes in water levels or flow rates. Finally, discovery tactics are pertinent as attackers may first seek to understand the system's configuration and vulnerabilities before executing a more disruptive attack.",
+  "explanation": {
+    "explanation": "The MV101 component is an electric actuated valve that controls the inlet of raw water into the treatment process in the SWaT system. It plays a critical role in managing the flow of raw water from the supply to the storage tank, ensuring that the treatment process has a consistent and adequate supply of water. The valve's operation is crucial for maintaining the water levels in the raw water tank, which is essential for the overall efficiency and effectiveness of the water treatment system.",
+    "possible_cause": "The anomaly in MV101 could stem from operational failures such as mechanical malfunction, electrical issues, or incorrect parameter settings. Additionally, cyber attack techniques such as 'Block Command Message' could prevent commands from reaching MV101, inhibiting its operation. Similarly, 'Block Reporting Message' could hide the status of MV101 from operators, leading to unaddressed issues. Furthermore, 'Modify Parameter' could allow an adversary to change the valve's operational parameters, leading to unintended behavior.",
+    "potential_impact": "If the anomaly is not addressed, it could lead to significant operational consequences, including inadequate water supply for treatment, which could compromise water quality and safety. From a security perspective, if an adversary successfully blocks command or reporting messages, they could manipulate the system without detection, leading to potential safety hazards or system failures.",
+    "mitigation_strategy": "To mitigate these risks, it is recommended to implement network allowlists to restrict unauthorized access and communications. Establishing an out-of-band communications channel can ensure that critical commands and reports are transmitted securely. Additionally, static network configurations can help prevent unauthorized changes. Operationally, regular audits, parameter validation, and robust user authentication should be enforced to ensure that only authorized personnel can modify system parameters."
+  },
+  "total_latency": 18.23677837499963,
+  "context_nodes": [
+    "Component: MV101\nDescription: Raw Water Inlet On/Off Valve\nDesign Specification: DN 25, Electric Actuated\nMaterial: PVC\nBrand Model: Burkert EV2650",
+    "Stage: P1\nName: Raw water supply & storage\nDescription: Stores and supplies raw water to the treatment process. Involves raw water tank, pumps, and initial flow measurement.\nComponents:\n- LIT101 (Raw water tank level sensor)\n- MV101 (Inlet control valve for raw water tank)\n- FIT101 (Raw water flow sensor)\n- P101 (Raw water pump)",
+    "Component: MV101\nConnects to: T101",
+    "Name: Block Command Message\nDescription: Adversaries may block a command message from reaching its intended target to prevent command execution. In OT networks, command messages are sent to provide instructions to control system devices. A blocked command message can inhibit response functions from correcting a disruption or unsafe condition. (Citation: Bonnie Zhu, Anthony Joseph, Shankar Sastry 2011)  (Citation: Electricity Information Sharing and Analysis Center; SANS Industrial Control Systems March 2016)\nDetection: Application Log Content, Network Traffic Flow, Process History/Live Data, Process/Event Alarm, Process Termination\nMitigation: Network Allowlists, Out-of-Band Communications Channel, Static Network Configuration",
+    "Name: Block Reporting Message\nDescription: Adversaries may block or prevent a reporting message from reaching its intended target. In control systems, reporting messages contain telemetry data (e.g., I/O values) pertaining to the current state of equipment and the industrial process. By blocking these reporting messages, an adversary can potentially hide their actions from an operator.\n\nBlocking reporting messages in control systems that manage physical processes may contribute to system impact, causing inhibition of a response function. A control system may not be able to respond in a proper or timely manner to an event, such as a dangerous fault, if its corresponding reporting message is blocked. (Citation: Bonnie Zhu, Anthony Joseph, Shankar Sastry 2011)  (Citation: Electricity Information Sharing and Analysis Center; SANS Industrial Control Systems March 2016)\nDetection: Application Log Content, Network Traffic Flow, Process History/Live Data, Process/Event Alarm, Process Termination\nMitigation: Network Allowlists, Out-of-Band Communications Channel, Static Network Configuration",
+    "Name: Modify Parameter\nDescription: Adversaries may modify parameters used to instruct industrial control system devices. These devices operate via programs that dictate how and when to perform actions based on such parameters. Such parameters can determine the extent to which an action is performed and may specify additional options. For example, a program on a control system device dictating motor processes may take a parameter defining the total number of seconds to run that motor.      \n\nAn adversary can potentially modify these parameters to produce an outcome outside of what was intended by the operators. By modifying system and process critical parameters, the adversary may cause [Impact](https://attack.mitre.org/tactics/TA0105) to equipment and/or control processes. Modified parameters may be turned into dangerous, out-of-bounds, or unexpected values from typical operations. For example, specifying that a process run for more or less time than it should, or dictating an unusually high, low, or invalid value as a parameter.\nDetection: Application Log Content, Asset Inventory, Network Traffic Content, Device Alarm\nMitigation: Audit, Authorization Enforcement, Human User Authentication, Validate Program Inputs"
+  ]
 }
