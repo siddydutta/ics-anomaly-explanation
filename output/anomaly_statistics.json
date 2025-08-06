@@ -1,0 +1,546 @@
+[
+    {
+        "baseline_stats": {
+            "mean": 0.93,
+            "std": 0.2551470164434615,
+            "min": 0.0,
+            "max": 1.0,
+            "count": 100
+        },
+        "detected_stats": {
+            "mean": 2.0,
+            "std": 0.0,
+            "min": 2.0,
+            "max": 2.0,
+            "count": 7
+        },
+        "detected_change_percent": "115.05%",
+        "top_attribution": "MV101",
+        "attack_number": 0
+    },
+    {
+        "baseline_stats": {
+            "mean": 1.2789115646258504,
+            "std": 0.4484639380639323,
+            "min": 1.0,
+            "max": 2.0,
+            "count": 294
+        },
+        "detected_stats": {
+            "mean": 2.0,
+            "std": 0.0,
+            "min": 2.0,
+            "max": 2.0,
+            "count": 83
+        },
+        "detected_change_percent": "56.38%",
+        "top_attribution": "P102",
+        "attack_number": 1
+    },
+    {
+        "baseline_stats": {
+            "mean": 1.6998326287425154,
+            "std": 0.041425687167785746,
+            "min": 1.569859,
+            "max": 1.762086,
+            "count": 167
+        },
+        "detected_stats": {
+            "mean": 1.7413555294117646,
+            "std": 0.02895159382002524,
+            "min": 1.69801,
+            "max": 1.762086,
+            "count": 17
+        },
+        "detected_change_percent": "2.44%",
+        "top_attribution": "PIT502",
+        "attack_number": 2
+    },
+    {
+        "baseline_stats": {
+            "mean": 8.367066489795919,
+            "std": 0.0018252802007141967,
+            "min": 8.36151,
+            "max": 8.36952,
+            "count": 196
+        },
+        "detected_stats": {
+            "mean": 6.0,
+            "std": 0.0,
+            "min": 6.0,
+            "max": 6.0,
+            "count": 197
+        },
+        "detected_change_percent": "-28.29%",
+        "top_attribution": "AIT202",
+        "attack_number": 3
+    },
+    {
+        "baseline_stats": {
+            "mean": 1.746067,
+            "std": 0.0,
+            "min": 1.746067,
+            "max": 1.746067,
+            "count": 9
+        },
+        "detected_stats": {
+            "mean": 1.746067,
+            "std": 0.0,
+            "min": 1.746067,
+            "max": 1.746067,
+            "count": 7
+        },
+        "detected_change_percent": "0.00%",
+        "top_attribution": "PIT502",
+        "attack_number": 4
+    },
+    {
+        "baseline_stats": {
+            "mean": 19.552632117768596,
+            "std": 0.0547848094271166,
+            "min": 19.38024,
+            "max": 19.69396,
+            "count": 968
+        },
+        "detected_stats": {
+            "mean": 45.0,
+            "std": 0.0,
+            "min": 45.0,
+            "max": 45.0,
+            "count": 969
+        },
+        "detected_change_percent": "130.15%",
+        "top_attribution": "DPIT301",
+        "attack_number": 5
+    },
+    {
+        "baseline_stats": {
+            "mean": 1.7239236125,
+            "std": 0.0028387476901716477,
+            "min": 1.715311,
+            "max": 1.73133,
+            "count": 720
+        },
+        "detected_stats": {
+            "mean": 0.15631067961165052,
+            "std": 0.2915209206343505,
+            "min": 0.0,
+            "max": 0.7,
+            "count": 721
+        },
+        "detected_change_percent": "-90.93%",
+        "top_attribution": "FIT401",
+        "attack_number": 6
+    },
+    {
+        "attack_number": 7
+    },
+    {
+        "attack_number": 8
+    },
+    {
+        "attack_number": 9
+    },
+    {
+        "baseline_stats": {
+            "mean": 251.3458,
+            "std": 0.0,
+            "min": 251.3458,
+            "max": 251.3458,
+            "count": 162
+        },
+        "detected_stats": {
+            "mean": 251.29185263157893,
+            "std": 0.07642325609408754,
+            "min": 251.0895,
+            "max": 251.4099,
+            "count": 19
+        },
+        "detected_change_percent": "-0.02%",
+        "top_attribution": "AIT201",
+        "attack_number": 10
+    },
+    {
+        "baseline_stats": {
+            "mean": 14.642451051282052,
+            "std": 1.8986884837794185,
+            "min": 11.72776,
+            "max": 16.0,
+            "count": 390
+        },
+        "detected_stats": {
+            "mean": 255.0,
+            "std": 0.0,
+            "min": 255.0,
+            "max": 255.0,
+            "count": 391
+        },
+        "detected_change_percent": "1641.51%",
+        "top_attribution": "AIT504",
+        "attack_number": 11
+    },
+    {
+        "attack_number": 12
+    },
+    {
+        "baseline_stats": {
+            "mean": 1.9978448275862069,
+            "std": 0.04637378187790951,
+            "min": 1.0,
+            "max": 2.0,
+            "count": 464
+        },
+        "detected_stats": {
+            "mean": 1.0,
+            "std": 0.0,
+            "min": 1.0,
+            "max": 1.0,
+            "count": 465
+        },
+        "detected_change_percent": "-49.95%",
+        "top_attribution": "UV401",
+        "attack_number": 13
+    },
+    {
+        "baseline_stats": {
+            "mean": 16.238545441906155,
+            "std": 6.838473692798928,
+            "min": 0.02560983,
+            "max": 20.19015,
+            "count": 682
+        },
+        "detected_stats": {
+            "mean": 45.0,
+            "std": 0.0,
+            "min": 45.0,
+            "max": 45.0,
+            "count": 683
+        },
+        "detected_change_percent": "177.12%",
+        "top_attribution": "DPIT301",
+        "attack_number": 14
+    },
+    {
+        "baseline_stats": {
+            "mean": 220.26312767295596,
+            "std": 0.08662804962964105,
+            "min": 220.0077,
+            "max": 220.3922,
+            "count": 318
+        },
+        "detected_stats": {
+            "mean": 220.19281410658309,
+            "std": 0.0927664730155121,
+            "min": 219.9436,
+            "max": 220.3922,
+            "count": 319
+        },
+        "detected_change_percent": "-0.03%",
+        "top_attribution": "AIT201",
+        "attack_number": 15
+    },
+    {
+        "baseline_stats": {
+            "mean": 220.24449966942146,
+            "std": 0.08840471360917426,
+            "min": 219.9436,
+            "max": 220.4563,
+            "count": 605
+        },
+        "detected_stats": {
+            "mean": 220.32744653465346,
+            "std": 0.04686095413716094,
+            "min": 220.232,
+            "max": 220.4243,
+            "count": 606
+        },
+        "detected_change_percent": "0.04%",
+        "top_attribution": "AIT201",
+        "attack_number": 16
+    },
+    {
+        "baseline_stats": {
+            "mean": 212.31901131158918,
+            "std": 1.8934555045050119,
+            "min": 211.0036,
+            "max": 228.8195,
+            "count": 1441
+        },
+        "detected_stats": {
+            "mean": 210.01079708737868,
+            "std": 1.563717747557909,
+            "min": 206.5816,
+            "max": 215.4576,
+            "count": 1442
+        },
+        "detected_change_percent": "-1.09%",
+        "top_attribution": "AIT201",
+        "attack_number": 17
+    },
+    {
+        "baseline_stats": {
+            "mean": 190.7558581920904,
+            "std": 0.04744275829086447,
+            "min": 190.6562,
+            "max": 190.9446,
+            "count": 531
+        },
+        "detected_stats": {
+            "mean": 189.92425357142858,
+            "std": 0.3299175196058626,
+            "min": 189.4066,
+            "max": 190.6562,
+            "count": 532
+        },
+        "detected_change_percent": "-0.44%",
+        "top_attribution": "AIT201",
+        "attack_number": 18
+    },
+    {
+        "baseline_stats": {
+            "mean": 198.67428895807754,
+            "std": 6.488154892396711,
+            "min": 188.3491,
+            "max": 228.8195,
+            "count": 34206
+        },
+        "detected_stats": {
+            "mean": 192.50284521004474,
+            "std": 2.58142324821804,
+            "min": 188.1569,
+            "max": 198.667,
+            "count": 34207
+        },
+        "detected_change_percent": "-3.11%",
+        "top_attribution": "AIT201",
+        "attack_number": 19
+    },
+    {
+        "baseline_stats": {
+            "mean": 185.02714141501292,
+            "std": 3.093183059424886,
+            "min": 181.0754,
+            "max": 192.739,
+            "count": 1159
+        },
+        "detected_stats": {
+            "mean": 181.5542152586207,
+            "std": 2.095543242204326,
+            "min": 180.9472,
+            "max": 196.8085,
+            "count": 1160
+        },
+        "detected_change_percent": "-1.88%",
+        "top_attribution": "AIT201",
+        "attack_number": 20
+    },
+    {
+        "baseline_stats": {
+            "mean": 176.55436291208795,
+            "std": 0.057337510240078174,
+            "min": 176.2689,
+            "max": 176.6534,
+            "count": 364
+        },
+        "detected_stats": {
+            "mean": 180.9736115068493,
+            "std": 2.8247216135117093,
+            "min": 176.4932,
+            "max": 184.504,
+            "count": 365
+        },
+        "detected_change_percent": "2.50%",
+        "top_attribution": "AIT201",
+        "attack_number": 21
+    },
+    {
+        "baseline_stats": {
+            "mean": 177.69530571428575,
+            "std": 0.026735691706865856,
+            "min": 177.6147,
+            "max": 177.7429,
+            "count": 595
+        },
+        "detected_stats": {
+            "mean": 179.72255956375838,
+            "std": 2.3493605745937587,
+            "min": 177.5186,
+            "max": 183.5106,
+            "count": 596
+        },
+        "detected_change_percent": "1.14%",
+        "top_attribution": "AIT201",
+        "attack_number": 22
+    },
+    {
+        "baseline_stats": {
+            "mean": 177.41019813519816,
+            "std": 0.02949425523883441,
+            "min": 177.3904,
+            "max": 177.4545,
+            "count": 429
+        },
+        "detected_stats": {
+            "mean": 177.42250000000004,
+            "std": 2.842170943040401e-14,
+            "min": 177.4225,
+            "max": 177.4225,
+            "count": 430
+        },
+        "detected_change_percent": "0.01%",
+        "top_attribution": "AIT201",
+        "attack_number": 23
+    },
+    {
+        "baseline_stats": {
+            "mean": 176.63721958762883,
+            "std": 0.09576717755440323,
+            "min": 176.4932,
+            "max": 176.9098,
+            "count": 97
+        },
+        "detected_stats": {
+            "mean": 176.74529285714283,
+            "std": 0.3085852411756418,
+            "min": 176.3009,
+            "max": 177.7108,
+            "count": 98
+        },
+        "detected_change_percent": "0.06%",
+        "top_attribution": "AIT201",
+        "attack_number": 24
+    },
+    {
+        "baseline_stats": {
+            "mean": 176.66872338204593,
+            "std": 0.1513996880753497,
+            "min": 176.3009,
+            "max": 177.7108,
+            "count": 479
+        },
+        "detected_stats": {
+            "mean": 176.76756520833334,
+            "std": 0.08956562316000387,
+            "min": 176.6534,
+            "max": 176.9418,
+            "count": 480
+        },
+        "detected_change_percent": "0.06%",
+        "top_attribution": "AIT201",
+        "attack_number": 25
+    },
+    {
+        "baseline_stats": {
+            "mean": 175.04487470817125,
+            "std": 0.04563905316231953,
+            "min": 174.859,
+            "max": 175.1474,
+            "count": 514
+        },
+        "detected_stats": {
+            "mean": 180.16322446601941,
+            "std": 3.344936586320915,
+            "min": 174.8911,
+            "max": 188.6375,
+            "count": 515
+        },
+        "detected_change_percent": "2.92%",
+        "top_attribution": "AIT201",
+        "attack_number": 26
+    },
+    {
+        "baseline_stats": {
+            "mean": 169.84806612903228,
+            "std": 0.03062578825958543,
+            "min": 169.7642,
+            "max": 170.0205,
+            "count": 372
+        },
+        "detected_stats": {
+            "mean": 169.933236461126,
+            "std": 0.08355828622019296,
+            "min": 169.636,
+            "max": 170.2448,
+            "count": 373
+        },
+        "detected_change_percent": "0.05%",
+        "top_attribution": "AIT201",
+        "attack_number": 27
+    },
+    {
+        "baseline_stats": {
+            "mean": 169.94279928057557,
+            "std": 0.048465885051971094,
+            "min": 169.7321,
+            "max": 170.0846,
+            "count": 278
+        },
+        "detected_stats": {
+            "mean": 169.92439999999996,
+            "std": 2.842170943040401e-14,
+            "min": 169.9244,
+            "max": 169.9244,
+            "count": 279
+        },
+        "detected_change_percent": "-0.01%",
+        "top_attribution": "AIT201",
+        "attack_number": 28
+    },
+    {
+        "baseline_stats": {
+            "mean": 169.95102770780855,
+            "std": 0.0655883685857375,
+            "min": 169.7321,
+            "max": 170.405,
+            "count": 397
+        },
+        "detected_stats": {
+            "mean": 170.02066130653267,
+            "std": 0.0022697841089004693,
+            "min": 170.0205,
+            "max": 170.0526,
+            "count": 398
+        },
+        "detected_change_percent": "0.04%",
+        "top_attribution": "AIT201",
+        "attack_number": 29
+    },
+    {
+        "baseline_stats": {
+            "mean": 2.0,
+            "std": 0.0,
+            "min": 2.0,
+            "max": 2.0,
+            "count": 294
+        },
+        "detected_stats": {
+            "mean": 1.0033898305084745,
+            "std": 0.05812348542197371,
+            "min": 1.0,
+            "max": 2.0,
+            "count": 295
+        },
+        "detected_change_percent": "-49.83%",
+        "top_attribution": "UV401",
+        "attack_number": 30
+    },
+    {
+        "baseline_stats": {
+            "mean": 169.7770083080655,
+            "std": 0.07293505794949089,
+            "min": 169.1553,
+            "max": 170.8857,
+            "count": 1649
+        },
+        "detected_stats": {
+            "mean": 169.27278393939395,
+            "std": 0.25616050499211196,
+            "min": 168.8029,
+            "max": 169.7962,
+            "count": 1650
+        },
+        "detected_change_percent": "-0.30%",
+        "top_attribution": "AIT201",
+        "attack_number": 31
+    }
+]

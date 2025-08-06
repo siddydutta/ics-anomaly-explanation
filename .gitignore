@@ -1,3 +1,6 @@
+# OS Files
+.DS_Store
+
 # Extra Python Files
 __pycache__/
 
