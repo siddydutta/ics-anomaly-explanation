@@ -15,7 +15,7 @@ cp .env.development .env
 
 ### ICS Anomaly Attributions
 
-Uses the results from the [ICS Anomaly Attributions](https://github.com/siddydutta/ics-anomaly-attribution) repository to process top-K attributions for each attack.
+Uses the attributoin results from the [ICS Anomaly Attributions](https://github.com/siddydutta/ics-anomaly-attribution) repository to process top-K attributions for each attack.
 
 
 ```shell
@@ -23,6 +23,16 @@ python process_attributions.py --threshold 60
 ```
 
 This gives a **k=5** attributions for each attack in [attributions](data/attributions.json).
+
+
+### ICS Anomaly Statistics
+
+Uses the detection results from the [ICS Anomaly Attributions](https://github.com/siddydutta/ics-anomaly-attribution) repository to compute various temporal statistics for each attack.
+
+```shell
+python process_anomalies.py
+```
+
 
 ### ICS Anomaly Explanations
 
@@ -38,5 +48,7 @@ The system supports three distinct approaches for generating explanations for IC
    The most advanced variant combines both SWaT technical metadata filtering and MITRE ATT&CK metadata inference. Explanations are generated using the top feature attribution, enriched by comprehensive filtering from both sources.
 
 ```shell
-python generate_explanations.py --attack 0 --variant BASELINE --output-dir output/
+python main.py --attack 0 --variant BASELINE --output-dir output/
+python main.py --attack 0 --variant NO_MITRE --output-dir output/
+python main.py --attack 0 --variant FULL --output-dir output/
 ```

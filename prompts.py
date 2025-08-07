@@ -23,9 +23,13 @@ You are an expert in industrial control systems security.
 
 An anomaly was detected in component: {top_feature}
 
-Statistical evidence: {anomaly_stats}
+*************
+Statistical evidence:
+{anomaly_stats}
 
-Context: {context}
+Context:
+{context}
+*************
 
 Provide a concise, data-driven analysis. Keep each response field to 2-3 sentences maximum. Focus on specifics based on the statistical evidence rather than generic possibilities.
 
@@ -43,9 +47,13 @@ You are an expert in industrial control systems security.
 
 An anomaly was detected in component: {top_feature}
 
-Statistical evidence: {anomaly_stats}
+*************
+Statistical evidence:
+{anomaly_stats}
 
-Context: {context}
+Context:
+{context}
+*************
 
 Provide a concise, data-driven analysis. Keep each response field to 2-3 sentences maximum. Focus on specifics based on the statistical evidence rather than generic possibilities.
 
