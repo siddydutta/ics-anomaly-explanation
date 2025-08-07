@@ -20,6 +20,7 @@ class ExperimentResult:
     top_feature: str
     stages: list[StageMetrics]
     inference: Optional[str]
+    prompt: str
     explanation: dict[str, any]
     total_latency: float
     context_nodes: list[str]

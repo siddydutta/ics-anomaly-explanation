@@ -159,7 +159,7 @@ class ICSAnomalyExplainer:
 
         return f"Baseline: {baseline['mean']:.2f}±{baseline['std']:.2f} → Detected: {detected['mean']:.2f}±{detected['std']:.2f} ({change_direction}{self.attack_stats['change_percentage']}, {signature})"
 
-    def generate_explanation(self) -> ExplanationOutput:
+    def generate_explanation(self) -> tuple[str, ExplanationOutput]:
         context = "\n---\n".join(
             [
                 f"Source Type: {node.metadata.get('doc_type', 'Unknown')}\n{node.text}"
@@ -175,7 +175,7 @@ class ICSAnomalyExplainer:
             prompt=prompt
         )
         output = ExplanationOutput.model_validate(json.loads(response.text))
-        return output
+        return prompt, output
 
     def run_experiment(self) -> ExperimentResult:
         """Run a complete experiment on a specific attack for a given variant."""
@@ -227,7 +227,7 @@ class ICSAnomalyExplainer:
 
         # Step 3: Generate final explanation
         explanation_start_time = time.perf_counter()
-        explanation = self.generate_explanation()
+        prompt, explanation = self.generate_explanation()
         explanation_latency = time.perf_counter() - explanation_start_time
         self.__add_stage_metrics(
             stage_name="explanation_generation",
@@ -242,6 +242,7 @@ class ICSAnomalyExplainer:
             top_feature=self.top_feature,
             stages=self.stages,
             inference=reasoning,
+            prompt=prompt,
             explanation=explanation.model_dump(),
             total_latency=total_latency,
             context_nodes=context_nodes,
