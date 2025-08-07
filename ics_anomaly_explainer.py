@@ -33,7 +33,7 @@ from models import (
     StageMetrics,
     TacticsOutput,
 )
-from prompts import EXPLANATION_PROMPT_MAP, MITRE_FILTER_INFERENCE
+from prompts import EXPLANATION_PROMPT, MITRE_FILTER_INFERENCE
 
 
 class ICSAnomalyExplainer:
@@ -166,10 +166,10 @@ class ICSAnomalyExplainer:
                 for node in self.nodes
             ]
         )
-        prompt = EXPLANATION_PROMPT_MAP[self.variant]
-        anomaly_stats = self.__attack_stats_to_prompt()
-        prompt = prompt.format(
-            top_feature=self.top_feature, context=context, anomaly_stats=anomaly_stats
+        prompt = EXPLANATION_PROMPT.format(
+            top_feature=self.top_feature,
+            context=context,
+            anomaly_stats=self.__attack_stats_to_prompt(),
         )
         response = self.llm.as_structured_llm(output_cls=ExplanationOutput).complete(
             prompt=prompt
@@ -253,7 +253,7 @@ class ICSAnomalyExplainer:
         results_dict = asdict(result)
 
         output_file = os.path.join(
-            output_dir, f"experiment_results_{self.variant.value}_{self.attack_id}.json"
+            output_dir, f"attack_{self.attack_id}_{self.variant.value}.json"
         )
         with open(output_file, "w") as f:
             json.dump(results_dict, f, indent=2, default=str)

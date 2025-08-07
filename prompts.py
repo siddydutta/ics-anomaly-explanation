@@ -1,5 +1,3 @@
-from models import ExperimentVariant
-
 MITRE_FILTER_INFERENCE = """
 An anomaly was detected with component: {top_feature}
 
@@ -18,7 +16,7 @@ Consider:
 Your selections will be used to retrieve specific ICS attack techniques for anomaly explanation.
 """
 
-BASELINE_EXPLANATION_PROMPT = """
+EXPLANATION_PROMPT = """
 You are an expert in industrial control systems security.
 
 An anomaly was detected in component: {top_feature}
@@ -34,40 +32,10 @@ Context:
 Provide a concise, data-driven analysis. Keep each response field to 2-3 sentences maximum. Focus on specifics based on the statistical evidence rather than generic possibilities.
 
 Analyse:
-- What the statistical pattern indicates physically happened
-- Root causes that would create this exact statistical signature
-- Specific impacts based on this component's role and the statistical evidence
-- Targeted mitigation for this particular anomaly pattern
+- The component function and what the statistical pattern indicates physically happened
+- Root causes that would create this exact statistical signature based on MITRE ATT&CK framework
+- Specific impacts based on this component's role in the stage and the statistical evidence
+- Targeted mitigation for this particular anomaly pattern based on MITRE ATT&CK framework
 
-Reference MITRE ATT&CK for ICS techniques where applicable for cyber threats.
+Base analysis strictly on provided context. Reference specific MITRE ATT&CK techniques, causes, mitigations where applicable.
 """
-
-FULL_EXPLANATION_PROMPT = """
-You are an expert in industrial control systems security.
-
-An anomaly was detected in component: {top_feature}
-
-*************
-Statistical evidence:
-{anomaly_stats}
-
-Context:
-{context}
-*************
-
-Provide a concise, data-driven analysis. Keep each response field to 2-3 sentences maximum. Focus on specifics based on the statistical evidence rather than generic possibilities.
-
-Analyse:
-- What the statistical pattern indicates physically happened
-- Root causes that would create this exact statistical signature  
-- Specific impacts based on this component's role and the statistical evidence
-- Targeted mitigation for this particular anomaly pattern
-
-Base analysis strictly on provided context. Reference specific MITRE ATT&CK techniques from the context for cyber threats.
-"""
-
-EXPLANATION_PROMPT_MAP = {
-    ExperimentVariant.BASELINE: BASELINE_EXPLANATION_PROMPT,
-    ExperimentVariant.NO_MITRE: BASELINE_EXPLANATION_PROMPT,  # same prompt, since no MITRE context
-    ExperimentVariant.FULL: FULL_EXPLANATION_PROMPT,
-}

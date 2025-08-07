@@ -6,7 +6,7 @@ class ExplanationOutput(BaseModel):
 
     explanation: str = Field(
         ...,
-        description="Brief explanation of what happened based on statistical evidence (2-3 sentences)",
+        description="Brief explanation of the component and what happened based on statistical evidence (2-3 sentences)",
     )
     possible_cause: str = Field(
         ...,
@@ -14,7 +14,7 @@ class ExplanationOutput(BaseModel):
     )
     potential_impact: str = Field(
         ...,
-        description="Specific impacts based on this component and statistical evidence (2-3 sentences)",
+        description="Specific impacts based on this component's role and statistical evidence (2-3 sentences)",
     )
     mitigation_strategy: str = Field(
         ..., description="Targeted mitigation for this anomaly pattern (2-3 sentences)"
