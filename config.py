@@ -1,5 +1,5 @@
 # Project Data Files
-ATTRIBUTIONS_FILE = "output/attributions.json"
+ANOMALY_STATS_FILE = "outputs/anomaly_statistics.json"
 
 # LLM Configuration
 OPENAI_MODEL = "gpt-4o-mini"

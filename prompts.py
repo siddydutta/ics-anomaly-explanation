@@ -23,21 +23,19 @@ You are an expert in industrial control systems security.
 
 An anomaly was detected in component: {top_feature}
 
-Context about the component from SWaT documentation:
-{context}
+Statistical evidence: {anomaly_stats}
 
-Please provide a comprehensive explanation of this anomaly including:
-1. Component function and role in the SWaT water treatment system phase
-2. Possible causes (operational failures and potential cyber threats)
-3. Potential impacts if unaddressed (stage-level and system-wide risks)
-4. Recommended mitigation strategies (technical and operational measures)
+Context: {context}
 
-Focus on specifics rather than generalities. Analyze:
-- How this component's anomaly would specifically impact its directly connected components
-- The unique attack surface and vulnerabilities of this particular component
-- Specific failure modes and their downstream consequences in the SWaT process
+Provide a concise, data-driven analysis. Keep each response field to 2-3 sentences maximum. Focus on specifics based on the statistical evidence rather than generic possibilities.
 
-Base your analysis on the provided SWaT system context. Additionally, leverage your knowledge to reference specific MITRE ATT&CK for ICS framework techniques to identify potential cyber attack causes and security mitigations.
+Analyse:
+- What the statistical pattern indicates physically happened
+- Root causes that would create this exact statistical signature
+- Specific impacts based on this component's role and the statistical evidence
+- Targeted mitigation for this particular anomaly pattern
+
+Reference MITRE ATT&CK for ICS techniques where applicable for cyber threats.
 """
 
 FULL_EXPLANATION_PROMPT = """
@@ -45,21 +43,19 @@ You are an expert in industrial control systems security.
 
 An anomaly was detected in component: {top_feature}
 
-Context about the component from SWaT documentation:
-{context}
+Statistical evidence: {anomaly_stats}
 
-Please provide a comprehensive explanation of this anomaly including:
-1. Component function and role in the SWaT water treatment system phase
-2. Possible causes (operational failures and potential cyber threats)
-3. Potential impacts if unaddressed (stage-level and system-wide risks)
-4. Recommended mitigation strategies (technical and operational measures)
+Context: {context}
 
-Focus on specifics rather than generalities. Analyze:
-- How this component's anomaly would specifically impact its directly connected components
-- The unique attack surface and vulnerabilities of this particular component
-- Specific failure modes and their downstream consequences in the SWaT process
+Provide a concise, data-driven analysis. Keep each response field to 2-3 sentences maximum. Focus on specifics based on the statistical evidence rather than generic possibilities.
 
-Base your analysis strictly on the provided context. Use the SWaT system documentation for impact analysis and reference specific MITRE ATT&CK techniques for identifying potential cyber attack causes and security mitigations.
+Analyse:
+- What the statistical pattern indicates physically happened
+- Root causes that would create this exact statistical signature  
+- Specific impacts based on this component's role and the statistical evidence
+- Targeted mitigation for this particular anomaly pattern
+
+Base analysis strictly on provided context. Reference specific MITRE ATT&CK techniques from the context for cyber threats.
 """
 
 EXPLANATION_PROMPT_MAP = {

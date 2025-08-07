@@ -14,13 +14,12 @@ from llama_cloud import (
     RetrievalMode,
 )
 from llama_index.core.callbacks import CallbackManager, TokenCountingHandler
-from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.core.schema import NodeWithScore
 from llama_index.indices.managed.llama_cloud import LlamaCloudIndex
 from llama_index.llms.openai import OpenAI
 
 from config import (
-    ATTRIBUTIONS_FILE,
+    ANOMALY_STATS_FILE,
     LLAMA_INDEX_NAME,
     LLAMA_PROJECT_NAME,
     OPENAI_MODEL,
@@ -44,9 +43,14 @@ class ICSAnomalyExplainer:
         self.logger = logging.getLogger(__name__)
         self.variant = variant
         self.attack_id = attack_id
-        with open(ATTRIBUTIONS_FILE, "r") as f:
-            attributions = json.load(f)[self.attack_id]
-            self.top_feature = attributions["attributions"][0]["feature"]
+        with open(ANOMALY_STATS_FILE, "r") as f:
+            anomaly_stats = json.load(f)[self.attack_id]
+            self.top_feature = anomaly_stats["top_attribution"]
+            self.attack_stats = {
+                "baseline_stats": anomaly_stats["baseline_stats"],
+                "anomaly_stats": anomaly_stats["detected_stats"],
+                "change_percentage": anomaly_stats["detected_change_percent"],
+            }
 
         self.token_counter = TokenCountingHandler(
             tokenizer=tiktoken.encoding_for_model(OPENAI_MODEL).encode
@@ -145,6 +149,16 @@ class ICSAnomalyExplainer:
         )
         return filters, output.reasoning
 
+    def __attack_stats_to_prompt(self) -> str:
+        """Convert attack statistics to a formatted string for the prompt."""
+        baseline = self.attack_stats["baseline_stats"]
+        detected = self.attack_stats["anomaly_stats"]
+
+        change_direction = "↑" if detected["mean"] > baseline["mean"] else "↓"
+        signature = "sudden change" if detected["std"] < 0.1 else "variable behavior"
+
+        return f"Baseline: {baseline['mean']:.2f}±{baseline['std']:.2f} → Detected: {detected['mean']:.2f}±{detected['std']:.2f} ({change_direction}{self.attack_stats['change_percentage']}, {signature})"
+
     def generate_explanation(self) -> ExplanationOutput:
         context = "\n---\n".join(
             [
@@ -153,7 +167,10 @@ class ICSAnomalyExplainer:
             ]
         )
         prompt = EXPLANATION_PROMPT_MAP[self.variant]
-        prompt = prompt.format(top_feature=self.top_feature, context=context)
+        anomaly_stats = self.__attack_stats_to_prompt()
+        prompt = prompt.format(
+            top_feature=self.top_feature, context=context, anomaly_stats=anomaly_stats
+        )
         response = self.llm.as_structured_llm(output_cls=ExplanationOutput).complete(
             prompt=prompt
         )
