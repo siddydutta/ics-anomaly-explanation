@@ -1,5 +1,6 @@
 import argparse
 import logging
+import os
 
 from dotenv import load_dotenv
 
@@ -35,8 +36,13 @@ def main():
     )
     args = parser.parse_args()
 
+    # Validate output directory
+    if not os.path.exists(args.output_dir):
+        os.makedirs(args.output_dir)
+        logger.debug(f"Created output directory: {args.output_dir}")
+
     # Run the experiment based on the variant
-    logger.info(f"Experiment for attack {args.attack} with variant {args.variant}")
+    logger.info(f"\nExperiment for attack {args.attack} with variant {args.variant}")
     try:
         variant = VARIANT_MAP[args.variant]
         explainer = ICSAnomalyExplainer(variant, args.attack)

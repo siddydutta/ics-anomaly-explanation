@@ -52,3 +52,10 @@ python main.py --attack 0 --variant BASELINE --output-dir output/
 python main.py --attack 0 --variant NO_MITRE --output-dir output/
 python main.py --attack 0 --variant FULL --output-dir output/
 ```
+
+OR
+
+```shell
+chmod +x run_explanations.sh
+./run_explanations.sh 0
+```
