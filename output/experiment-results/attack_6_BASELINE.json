@@ -1,0 +1,45 @@
+{
+  "variant": "BASELINE",
+  "attack_id": 6,
+  "top_feature": "FIT401",
+  "stages": [
+    {
+      "stage_name": "swat_document_retrieval",
+      "latency_seconds": 2.248041832997842,
+      "embedding_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "retrieved_docs": 3
+    },
+    {
+      "stage_name": "mitre_document_retrieval",
+      "latency_seconds": 0.0,
+      "embedding_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "retrieved_docs": 0
+    },
+    {
+      "stage_name": "explanation_generation",
+      "latency_seconds": 6.94865720800226,
+      "embedding_tokens": 0,
+      "input_tokens": 411,
+      "output_tokens": 293,
+      "retrieved_docs": 0
+    }
+  ],
+  "inference": null,
+  "prompt": "\nYou are an expert in industrial control systems security.\n\nAn anomaly was detected in component: FIT401\n\n*************\nStatistical evidence:\nBaseline: 1.72\u00b10.00 \u2192 Detected: 0.16\u00b10.29 (\u2193-90.93%, variable behavior)\n\nContext:\nSource Type: component\nComponent: FIT401\nDescription: RO Feed FIT\nDesign Specification: Electromagnetic, DN25\nMaterial: PTFE\nBrand Model: ISOLV EFS803/CFT183\n---\nSource Type: pid\nComponent: FIT401\nConnects to: UV401\n---\nSource Type: pid\nComponent: AIT401\nConnects to: FIT401\n*************\n\nProvide a concise, data-driven analysis. Keep each response field to 2-3 sentences maximum. Focus on specifics based on the statistical evidence rather than generic possibilities.\n\nAnalyse:\n- The component function and what the statistical pattern indicates physically happened\n- Root causes that would create this exact statistical signature based on MITRE ATT&CK framework\n- Specific impacts based on this component's role in the stage and the statistical evidence\n- Targeted mitigation for this particular anomaly pattern based on MITRE ATT&CK framework\n\nBase analysis strictly on provided context. Reference specific MITRE ATT&CK techniques, causes, mitigations where applicable.\n",
+  "explanation": {
+    "explanation": "The FIT401 component, responsible for RO feed, shows a significant drop in its operational metrics, indicating a potential failure or malfunction. The detected value of 0.16\u00b10.29 suggests that the flow rate or pressure is drastically lower than the baseline of 1.72\u00b10.00, which could imply a blockage or leak in the system.",
+    "possible_cause": "This anomaly could be attributed to techniques such as 'Data Manipulation' (T1203) or 'Denial of Service' (T1499), where an attacker may have interfered with the component's normal operation. Additionally, physical tampering or degradation of the PTFE material could also lead to such a drastic change in performance.",
+    "potential_impact": "The FIT401's role in the RO feed is critical for maintaining the desired pressure and flow rates in the system. A 90.93% decrease in performance could lead to insufficient water treatment, potentially causing downstream equipment to malfunction or produce substandard output, impacting overall system efficiency.",
+    "mitigation_strategy": "To address this anomaly, immediate inspection and maintenance of the FIT401 should be conducted to identify any physical blockages or leaks. Implementing monitoring for abnormal flow rates and pressure changes, along with access controls to prevent unauthorized manipulation, can help mitigate similar issues in the future."
+  },
+  "total_latency": 9.196753083997464,
+  "context_nodes": [
+    "Component: FIT401\nDescription: RO Feed FIT\nDesign Specification: Electromagnetic, DN25\nMaterial: PTFE\nBrand Model: ISOLV EFS803/CFT183",
+    "Component: FIT401\nConnects to: UV401",
+    "Component: AIT401\nConnects to: FIT401"
+  ]
+}

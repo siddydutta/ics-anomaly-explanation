@@ -1,0 +1,45 @@
+{
+  "variant": "BASELINE",
+  "attack_id": 1,
+  "top_feature": "P102",
+  "stages": [
+    {
+      "stage_name": "swat_document_retrieval",
+      "latency_seconds": 2.964224999999715,
+      "embedding_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "retrieved_docs": 3
+    },
+    {
+      "stage_name": "mitre_document_retrieval",
+      "latency_seconds": 0.0,
+      "embedding_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "retrieved_docs": 0
+    },
+    {
+      "stage_name": "explanation_generation",
+      "latency_seconds": 12.768788249999488,
+      "embedding_tokens": 0,
+      "input_tokens": 432,
+      "output_tokens": 279,
+      "retrieved_docs": 0
+    }
+  ],
+  "inference": null,
+  "prompt": "\nYou are an expert in industrial control systems security.\n\nAn anomaly was detected in component: P102\n\n*************\nStatistical evidence:\nBaseline: 1.28\u00b10.45 \u2192 Detected: 2.00\u00b10.00 (\u219156.38%, sudden change)\n\nContext:\nSource Type: component\nComponent: P102\nDescription: Raw Water Transfer Pump\nDesign Specification: Duty: 2.5 m\u00b3/h @ 20m\nMaterial: Casing: Chrome Nickel SS Impeller: Noryl Shaft: SS\nBrand Model: CALPEDA MXH 203\n---\nSource Type: pid\nComponent: P102\nConnects to: AIT201\n---\nSource Type: pid\nComponent: T101\nConnects to: P101, P102\n*************\n\nProvide a concise, data-driven analysis. Keep each response field to 2-3 sentences maximum. Focus on specifics based on the statistical evidence rather than generic possibilities.\n\nAnalyse:\n- The component function and what the statistical pattern indicates physically happened\n- Root causes that would create this exact statistical signature based on MITRE ATT&CK framework\n- Specific impacts based on this component's role in the stage and the statistical evidence\n- Targeted mitigation for this particular anomaly pattern based on MITRE ATT&CK framework\n\nBase analysis strictly on provided context. Reference specific MITRE ATT&CK techniques, causes, mitigations where applicable.\n",
+  "explanation": {
+    "explanation": "The Raw Water Transfer Pump (P102) has shown a significant increase in its operational metric, with a detected value of 2.00, which is 56.38% higher than the baseline of 1.28. This sudden change indicates a potential malfunction or unauthorized manipulation of the pump's operational parameters.",
+    "possible_cause": "This anomaly could be linked to MITRE ATT&CK technique T1071 (Application Layer Protocol) where an attacker manipulates the control commands sent to the pump, or T1203 (Exploitation for Client Execution) if a vulnerability in the control system software was exploited to alter pump settings.",
+    "potential_impact": "Given that P102 is responsible for transferring raw water, an increase in its operational output could lead to over-pressurization, potential equipment failure, or flooding in downstream processes. This could disrupt the entire water treatment process, affecting overall system reliability.",
+    "mitigation_strategy": "To mitigate this anomaly, it is essential to implement strict access controls and monitoring on the control commands sent to P102, in line with MITRE ATT&CK technique T1070 (Indicator Removal on Host). Regular audits and updates of the control system software should also be performed to patch any vulnerabilities that could be exploited."
+  },
+  "total_latency": 15.73307795800065,
+  "context_nodes": [
+    "Component: P102\nDescription: Raw Water Transfer Pump\nDesign Specification: Duty: 2.5 m\u00b3/h @ 20m\nMaterial: Casing: Chrome Nickel SS Impeller: Noryl Shaft: SS\nBrand Model: CALPEDA MXH 203",
+    "Component: P102\nConnects to: AIT201",
+    "Component: T101\nConnects to: P101, P102"
+  ]
+}

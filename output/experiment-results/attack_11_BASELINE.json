@@ -1,0 +1,45 @@
+{
+  "variant": "BASELINE",
+  "attack_id": 11,
+  "top_feature": "AIT504",
+  "stages": [
+    {
+      "stage_name": "swat_document_retrieval",
+      "latency_seconds": 1.6215515840012813,
+      "embedding_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "retrieved_docs": 3
+    },
+    {
+      "stage_name": "mitre_document_retrieval",
+      "latency_seconds": 0.0,
+      "embedding_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "retrieved_docs": 0
+    },
+    {
+      "stage_name": "explanation_generation",
+      "latency_seconds": 13.111013207999349,
+      "embedding_tokens": 0,
+      "input_tokens": 421,
+      "output_tokens": 546,
+      "retrieved_docs": 0
+    }
+  ],
+  "inference": null,
+  "prompt": "\nYou are an expert in industrial control systems security.\n\nAn anomaly was detected in component: AIT504\n\n*************\nStatistical evidence:\nBaseline: 14.64\u00b11.90 \u2192 Detected: 255.00\u00b10.00 (\u21911641.51%, sudden change)\n\nContext:\nSource Type: component\nComponent: AIT504\nDescription: AIT - Conductivity (RO Permeate)\nDesign Specification: Range: 0.02 to 20 \u03bcS/cm\nMaterial: -\nBrand Model: easySense Cond 71\n---\nSource Type: pid\nComponent: AIT504\nConnects to: FIT502\n---\nSource Type: pid\nComponent: PIT502\nConnects to: AIT504\n*************\n\nProvide a concise, data-driven analysis. Keep each response field to 2-3 sentences maximum. Focus on specifics based on the statistical evidence rather than generic possibilities.\n\nAnalyse:\n- The component function and what the statistical pattern indicates physically happened\n- Root causes that would create this exact statistical signature based on MITRE ATT&CK framework\n- Specific impacts based on this component's role in the stage and the statistical evidence\n- Targeted mitigation for this particular anomaly pattern based on MITRE ATT&CK framework\n\nBase analysis strictly on provided context. Reference specific MITRE ATT&CK techniques, causes, mitigations where applicable.\n",
+  "explanation": {
+    "explanation": "The AIT504 component, which measures conductivity, has shown a drastic increase in detected values from a baseline of 14.64 \u03bcS/cm to 255.00 \u03bcS/cm, indicating a significant anomaly in the water quality or sensor malfunction. This sudden spike suggests either a contamination event or a failure in the sensor's calibration or functionality.",
+    "possible_cause": "This anomaly could be attributed to techniques such as 'Data Manipulation' (T1565) or 'Sensor Manipulation' (T1203) from the MITRE ATT&CK framework, where an attacker may have altered sensor readings or introduced contaminants to disrupt operations. Additionally, physical tampering or environmental changes could have led to this spike in conductivity.",
+    "potential_impact": "The AIT504's role in monitoring water quality is critical for maintaining safe operational conditions. An erroneous reading at this level could lead to improper chemical dosing, equipment damage, or safety hazards, potentially causing operational downtime and regulatory compliance issues.",
+    "mitigation_strategy": "To mitigate this anomaly, implement 'Data Integrity Checks' (T1565.001) to validate sensor readings against expected ranges and historical data. Regular maintenance and calibration of sensors, along with environmental monitoring, can help detect and prevent such anomalies from occurring."
+  },
+  "total_latency": 14.73260104200017,
+  "context_nodes": [
+    "Component: AIT504\nDescription: AIT - Conductivity (RO Permeate)\nDesign Specification: Range: 0.02 to 20 \u03bcS/cm\nMaterial: -\nBrand Model: easySense Cond 71",
+    "Component: AIT504\nConnects to: FIT502",
+    "Component: PIT502\nConnects to: AIT504"
+  ]
+}

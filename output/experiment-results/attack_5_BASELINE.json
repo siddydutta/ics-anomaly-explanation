@@ -1,0 +1,45 @@
+{
+  "variant": "BASELINE",
+  "attack_id": 5,
+  "top_feature": "DPIT301",
+  "stages": [
+    {
+      "stage_name": "swat_document_retrieval",
+      "latency_seconds": 2.8120609170000535,
+      "embedding_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "retrieved_docs": 3
+    },
+    {
+      "stage_name": "mitre_document_retrieval",
+      "latency_seconds": 0.0,
+      "embedding_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "retrieved_docs": 0
+    },
+    {
+      "stage_name": "explanation_generation",
+      "latency_seconds": 16.459822958000586,
+      "embedding_tokens": 0,
+      "input_tokens": 476,
+      "output_tokens": 572,
+      "retrieved_docs": 0
+    }
+  ],
+  "inference": null,
+  "prompt": "\nYou are an expert in industrial control systems security.\n\nAn anomaly was detected in component: DPIT301\n\n*************\nStatistical evidence:\nBaseline: 19.55\u00b10.05 \u2192 Detected: 45.00\u00b10.00 (\u2191130.15%, sudden change)\n\nContext:\nSource Type: component\nComponent: DPIT301\nDescription: Differential Pressure Indicating Transmitter\nDesign Specification: Range: 0-2 Bar\nMaterial: SS316 Port\nBrand Model: SPT 100 DP\n---\nSource Type: stage\nStage: P3\nName: Ultrafiltration (UF)\nDescription: Filters the chemically treated water through an ultrafiltration unit to remove fine particles and impurities.\nComponents:\n- LIT301 (UF feed tank level sensor)\n- DPIT301 (Differential pressure indicator transmitter for UF unit)\n- P301 (UF feed pump)\n---\nSource Type: pid\nComponent: MV301\nConnects to: MV302, DPSH301, DPIT301\n*************\n\nProvide a concise, data-driven analysis. Keep each response field to 2-3 sentences maximum. Focus on specifics based on the statistical evidence rather than generic possibilities.\n\nAnalyse:\n- The component function and what the statistical pattern indicates physically happened\n- Root causes that would create this exact statistical signature based on MITRE ATT&CK framework\n- Specific impacts based on this component's role in the stage and the statistical evidence\n- Targeted mitigation for this particular anomaly pattern based on MITRE ATT&CK framework\n\nBase analysis strictly on provided context. Reference specific MITRE ATT&CK techniques, causes, mitigations where applicable.\n",
+  "explanation": {
+    "explanation": "The DPIT301, a Differential Pressure Indicating Transmitter, has shown a significant increase in detected pressure from a baseline of 19.55 to 45.00, indicating a potential blockage or failure in the ultrafiltration unit. This sudden spike suggests that the pressure differential is not functioning within expected parameters, which could lead to operational failures.",
+    "possible_cause": "This anomaly may be attributed to a blockage in the ultrafiltration unit or a malfunction in the DPIT301 itself, potentially linked to MITRE ATT&CK technique T1203 (Exploitation for Client Execution) if the system was compromised. Additionally, T1071 (Application Layer Protocol) could indicate unauthorized commands affecting the pressure readings.",
+    "potential_impact": "Given that DPIT301 is crucial for monitoring the pressure in the ultrafiltration stage, this anomaly could lead to inefficient filtration, potential equipment damage, and compromised water quality. If the pressure continues to rise unchecked, it may result in system shutdowns or failures, impacting overall operations.",
+    "mitigation_strategy": "To address this anomaly, immediate inspection and maintenance of the DPIT301 and the ultrafiltration unit should be conducted to identify blockages or malfunctions. Implementing network segmentation and monitoring for unauthorized access (related to T1071) can help prevent exploitation of the control system."
+  },
+  "total_latency": 19.27194345799944,
+  "context_nodes": [
+    "Component: DPIT301\nDescription: Differential Pressure Indicating Transmitter\nDesign Specification: Range: 0-2 Bar\nMaterial: SS316 Port\nBrand Model: SPT 100 DP",
+    "Stage: P3\nName: Ultrafiltration (UF)\nDescription: Filters the chemically treated water through an ultrafiltration unit to remove fine particles and impurities.\nComponents:\n- LIT301 (UF feed tank level sensor)\n- DPIT301 (Differential pressure indicator transmitter for UF unit)\n- P301 (UF feed pump)",
+    "Component: MV301\nConnects to: MV302, DPSH301, DPIT301"
+  ]
+}

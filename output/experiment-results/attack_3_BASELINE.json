@@ -1,0 +1,45 @@
+{
+  "variant": "BASELINE",
+  "attack_id": 3,
+  "top_feature": "AIT202",
+  "stages": [
+    {
+      "stage_name": "swat_document_retrieval",
+      "latency_seconds": 3.240744667000399,
+      "embedding_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "retrieved_docs": 3
+    },
+    {
+      "stage_name": "mitre_document_retrieval",
+      "latency_seconds": 0.0,
+      "embedding_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "retrieved_docs": 0
+    },
+    {
+      "stage_name": "explanation_generation",
+      "latency_seconds": 6.455145332998654,
+      "embedding_tokens": 0,
+      "input_tokens": 461,
+      "output_tokens": 227,
+      "retrieved_docs": 0
+    }
+  ],
+  "inference": null,
+  "prompt": "\nYou are an expert in industrial control systems security.\n\nAn anomaly was detected in component: AIT202\n\n*************\nStatistical evidence:\nBaseline: 8.37\u00b10.00 \u2192 Detected: 6.00\u00b10.00 (\u2193-28.29%, sudden change)\n\nContext:\nSource Type: component\nComponent: AIT202\nDescription: AIT - pH & ORP\nDesign Specification: pH: 0-14 ORP: -800mV to 800mV\nMaterial: -\nBrand Model: Mettler Toledo M300 Dual/ easySense pH 32 & ORP 41\n---\nSource Type: pid\nComponent: AIT202\nConnects to: MV201\n---\nSource Type: pid\nComponent: AIT201\nConnects to: P201, P202, P203, P204, P205, P206, P207, P208\n*************\n\nProvide a concise, data-driven analysis. Keep each response field to 2-3 sentences maximum. Focus on specifics based on the statistical evidence rather than generic possibilities.\n\nAnalyse:\n- The component function and what the statistical pattern indicates physically happened\n- Root causes that would create this exact statistical signature based on MITRE ATT&CK framework\n- Specific impacts based on this component's role in the stage and the statistical evidence\n- Targeted mitigation for this particular anomaly pattern based on MITRE ATT&CK framework\n\nBase analysis strictly on provided context. Reference specific MITRE ATT&CK techniques, causes, mitigations where applicable.\n",
+  "explanation": {
+    "explanation": "The AIT202 component, responsible for measuring pH and ORP, has shown a significant drop in its readings from a baseline of 8.37 to 6.00, indicating a potential malfunction or external interference affecting its measurement capabilities.",
+    "possible_cause": "This sudden change may be indicative of a sensor tampering or manipulation attack, potentially aligning with MITRE ATT&CK technique T1071.001 (Application Layer Protocol: Web Protocols) where adversaries may exploit communication protocols to alter sensor data.",
+    "potential_impact": "Given that AIT202 is critical for monitoring chemical processes, a drop in pH and ORP readings can lead to improper chemical reactions, potentially causing safety hazards or product quality issues in the industrial process.",
+    "mitigation_strategy": "To mitigate this anomaly, implement integrity checks and anomaly detection systems on sensor data, as suggested by MITRE ATT&CK technique T1040 (Network Sniffing), to monitor for unusual patterns and ensure data authenticity."
+  },
+  "total_latency": 9.695958208001684,
+  "context_nodes": [
+    "Component: AIT202\nDescription: AIT - pH & ORP\nDesign Specification: pH: 0-14 ORP: -800mV to 800mV\nMaterial: -\nBrand Model: Mettler Toledo M300 Dual/ easySense pH 32 & ORP 41",
+    "Component: AIT202\nConnects to: MV201",
+    "Component: AIT201\nConnects to: P201, P202, P203, P204, P205, P206, P207, P208"
+  ]
+}
