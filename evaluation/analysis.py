@@ -90,12 +90,17 @@ chart1 = (
     alt.Chart(data_chart_1)
     .mark_bar()
     .encode(
-        x=alt.X("Metric:N", title="Metric", axis=alt.Axis(labelAngle=0)),
+        x=alt.X(
+            "Metric:N",
+            title="Metric",
+            axis=alt.Axis(labelAngle=0),
+            sort=metrics_chart_1,
+        ),
         y=alt.Y("mean(Score):Q", title="Mean Likert Score (1-5)"),
         color=alt.Color("Condition:N", title="Condition"),
         xOffset="Condition:N",
     )
-    .properties(title="User Evaluation by Metric", width=alt.Step(40))
+    .properties(title="", width=alt.Step(40))
 )
 
 chart2 = (
@@ -103,12 +108,16 @@ chart2 = (
     .mark_bar()
     .encode(
         x=alt.X("Metric:N", title="Metric", axis=alt.Axis(labelAngle=0)),
-        y=alt.Y("mean(Score):Q", title="Mean Likert Score (1-5)"),
+        y=alt.Y(
+            "mean(Score):Q",
+            title="Mean Likert Score (1-5)",
+            axis=alt.Axis(orient="right"),
+        ),
         color=alt.Color("Condition:N", title="Condition"),
         xOffset="Condition:N",
     )
-    .properties(title="Clarity and Trustworthiness Comparison", width=alt.Step(40))
+    .properties(title="", width=alt.Step(40))
 )
 
-chart1.save("user-metrics.png")
-chart2.save("explanation-metrics.png")
+chart = alt.hconcat(chart1, chart2)
+chart.save("user-evaluation-metrics.png")
