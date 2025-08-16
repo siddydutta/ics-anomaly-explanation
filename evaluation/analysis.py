@@ -12,6 +12,11 @@ CONDITION_MAP = {
     "BASE": "N-RAG",
     "FULL": "ME-RAG",
 }
+CONDITION_COLOURS = {
+    "ME-RAG": "#000000",  # Black
+    "N-RAG": "#7f7f7f",  # Dark Gray
+    "RAW XAI": "#cccccc",  # Light Gray
+}
 
 
 METRIC_CONFIDENCE = "I am confident I understand the core problem."
@@ -97,7 +102,15 @@ chart1 = (
             sort=metrics_chart_1,
         ),
         y=alt.Y("mean(Score):Q", title="Mean Likert Score (1-5)"),
-        color=alt.Color("Condition:N", title="Condition"),
+        color=alt.Color(
+            "Condition:N",
+            title="Condition",
+            scale=alt.Scale(
+                domain=list(CONDITION_COLOURS.keys()),
+                range=list(CONDITION_COLOURS.values()),
+            ),
+            legend=alt.Legend(labelFontSize=12, titleFontSize=13),
+        ),
         xOffset="Condition:N",
     )
     .properties(title="", width=alt.Step(40))
@@ -113,7 +126,15 @@ chart2 = (
             title="Mean Likert Score (1-5)",
             axis=alt.Axis(orient="right"),
         ),
-        color=alt.Color("Condition:N", title="Condition"),
+        color=alt.Color(
+            "Condition:N",
+            title="Condition",
+            scale=alt.Scale(
+                domain=list(CONDITION_COLOURS.keys()),
+                range=list(CONDITION_COLOURS.values()),
+            ),
+            legend=alt.Legend(labelFontSize=12, titleFontSize=13),
+        ),
         xOffset="Condition:N",
     )
     .properties(title="", width=alt.Step(40))
