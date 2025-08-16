@@ -1,7 +1,7 @@
 import altair as alt
 import pandas as pd
 
-DATA_FILE = "survey-data.csv"
+DATA_FILE = "user-evaluation.csv"
 
 CONDITION_RAW = "RAW"
 CONDITION_BASE = "BASE"

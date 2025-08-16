@@ -1,0 +1,25 @@
+,,Physical Impact Accuracy,,Adversarial Context Accuracy,,Process Grounding Accuracy,
+Attack Index (AXIS),Attack ID (SWaT),N-RAG,ME-RAG,N-RAG,ME-RAG,N-RAG,ME-RAG
+0,1,1,2,1,2,2,2
+1,2,2,2,1,2,2,2
+3,6,1,0,1,2,2,2
+5,8,1,1,1,1,2,2
+6,10,1,1,0,2,1,2
+11,20,1,1,0,2,1,2
+13,22,0,1,1,2,2,1
+14,23,1,2,1,2,2,2
+,,1,1.25,0.75,1.875,1.75,1.875
+,,,0.25,,1.5,,0.07142857143
+,,,,,,,
+,,N-RAG,3.5,6,,0.4285714286,
+,,ME-RAG,5,6,,,
+,,,,,,,
+Rubric,,,,,,,
+0,Incorrect / Hallucinated,,,,,,
+1,Generic / Plausible / Implied,,,,,,
+2,Relevant / Specific / Explicit,,,,,,
+,,,,,,,
+,,,,,,,
+Physical Impact Accuracy,correct identification of the physical consequence of the attack.,,,,,,
+Adversarial Context Accuracy,relevance and correctness of the cited cybersecurity techniques.,,,,,,
+Process Grounding Accuracy,correct identification of the component’s function and its role within the process stage.,,,,,,
