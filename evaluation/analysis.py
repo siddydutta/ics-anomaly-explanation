@@ -7,6 +7,12 @@ CONDITION_RAW = "RAW"
 CONDITION_BASE = "BASE"
 CONDITION_FULL = "FULL"
 CONDITIONS = [CONDITION_RAW, CONDITION_BASE, CONDITION_FULL]
+CONDITION_MAP = {
+    "RAW": "RAW XAI",
+    "BASE": "N-RAG",
+    "FULL": "ME-RAG",
+}
+
 
 METRIC_CONFIDENCE = "I am confident I understand the core problem."
 METRIC_ACTIONABILITY = "I have a clear idea of the potential impact on the system."
@@ -38,7 +44,7 @@ for column, question in zip(raw_df.columns, raw_df.iloc[0]):
     mapping = dict()
     for condition in CONDITIONS:
         if condition in question:
-            mapping["condition"] = condition
+            mapping["condition"] = CONDITION_MAP[condition]
             break
     for metric in METRICS:
         if metric in question:
@@ -62,6 +68,15 @@ for col_name, mapping in COLUMN_MAP.items():
                 }
             )
 df_long = pd.DataFrame(long_format_data)
+# Ensure Score is numeric for aggregation
+df_long["Score"] = pd.to_numeric(df_long["Score"], errors="coerce")
+
+# Print mean Likert scores for each (Condition, Metric) pair
+mean_scores = df_long.groupby(["Condition", "Metric"])["Score"].mean().unstack()
+print(
+    "--------------- Mean Likert Scores (1-5) by Condition and Metric ---------------"
+)
+print(mean_scores)
 
 # Define the metrics for the first chart
 metrics_chart_1 = ["Confidence", "Actionability", "Cognitive Load"]
