@@ -101,7 +101,11 @@ chart1 = (
             axis=alt.Axis(labelAngle=0),
             sort=metrics_chart_1,
         ),
-        y=alt.Y("mean(Score):Q", title="Mean Likert Score (1-5)"),
+        y=alt.Y(
+            "mean(Score):Q",
+            title="Mean Likert Score (1-5)",
+            scale=alt.Scale(domain=[1, 5]),
+        ),
         color=alt.Color(
             "Condition:N",
             title="Condition",
@@ -125,6 +129,7 @@ chart2 = (
             "mean(Score):Q",
             title="Mean Likert Score (1-5)",
             axis=alt.Axis(orient="right"),
+            scale=alt.Scale(domain=[1, 5]),
         ),
         color=alt.Color(
             "Condition:N",
