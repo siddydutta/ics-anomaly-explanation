@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AXIS Framework</title>
+    <style>
+      :root {
+        --university-blue: #003865; /* PMS 2955 */
+        --sky-blue: #005398; /* PMS 2144 */
+        --slate: #4f5961; /* PMS 431 */
+        --leaf: #00843d; /* PMS 348 */
+        --background-light: #f8f9fa;
+        --white: #ffffff;
+        --text-dark: #2c3e50;
+        --border-light: #dee2e6;
+        --light-gray: #f5f5f5;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        background: var(--light-gray);
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header */
+      .hero {
+        background: var(--white);
+        padding: 4rem 0;
+        text-align: center;
+        margin-bottom: 2rem;
+        border-radius: 0 0 30px 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .university-logo {
+        max-width: 200px;
+        height: auto;
+        margin-bottom: 2rem;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: linear-gradient(
+          135deg,
+          var(--university-blue),
+          var(--sky-blue)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero .subtitle {
+        font-size: 1.3rem;
+        color: #666;
+        margin-bottom: 2rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-badges {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+      }
+
+      .badge {
+        background: var(--sky-blue);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+      }
+
+      .badge:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 83, 152, 0.4);
+      }
+
+      .badge.github {
+        background: var(--university-blue);
+      }
+
+      /* Navigation */
+      .nav {
+        background: var(--white);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .nav a {
+        color: var(--text-dark);
+        text-decoration: none;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .nav a:hover {
+        background: var(--sky-blue);
+        color: white;
+      }
+
+      /* Main content sections */
+      .section {
+        background: var(--white);
+        margin: 2rem 0;
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .section h2 {
+        color: var(--university-blue);
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        border-bottom: 3px solid var(--sky-blue);
+        padding-bottom: 1rem;
+      }
+
+      .section h3 {
+        color: var(--sky-blue);
+        font-size: 1.8rem;
+        margin: 2rem 0 1rem 0;
+      }
+
+      /* List styling */
+      .section ul {
+        margin: 1rem 0;
+        padding-left: 2rem;
+      }
+
+      .section li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+      }
+
+      /* Framework overview */
+      .framework-stages {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .stage {
+        background: var(--background-light);
+        padding: 2rem;
+        border-radius: 15px;
+        border-left: 4px solid var(--sky-blue);
+        transition: transform 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .stage:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .stage h4 {
+        color: var(--university-blue);
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+      }
+
+      .stage-content {
+        flex: 1;
+      }
+
+      .stage-image {
+        flex-shrink: 0;
+        text-align: center;
+      }
+
+      .stage-image img {
+        width: 400px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .stage-image img:hover {
+        transform: scale(1.05);
+      }
+
+      .stage-repo {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: var(--sky-blue);
+        font-weight: 600;
+      }
+
+      .stage-repo a {
+        color: var(--sky-blue);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        background: var(--white);
+        border-radius: 8px;
+        display: inline-block;
+        margin-top: 0.5rem;
+        transition: all 0.3s ease;
+        font-size: 0.8rem;
+        border: 2px solid var(--sky-blue);
+      }
+
+      .stage-repo a:hover {
+        background: var(--sky-blue);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      .modal-content {
+        position: relative;
+        margin: auto;
+        display: block;
+        max-width: 90%;
+        max-height: 90%;
+        margin-top: 2%;
+      }
+
+      .modal-content img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .modal-close:hover {
+        color: var(--sky-blue);
+      }
+
+      .modal-caption {
+        text-align: center;
+        color: #fff;
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        padding: 0 2rem;
+      }
+
+      /* Results grid */
+      .results-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .metric-card {
+        background: linear-gradient(
+          135deg,
+          var(--sky-blue),
+          var(--university-blue)
+        );
+        color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .metric-card:hover {
+        transform: scale(1.05);
+      }
+
+      .metric-value {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .metric-label {
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+
+      /* Repository links */
+      .repo-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .repo-card {
+        background: var(--background-light);
+        padding: 2rem;
+        border-radius: 15px;
+        border-left: 4px solid var(--sky-blue);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .repo-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .repo-card h4 {
+        color: var(--university-blue);
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+      }
+
+      .repo-card p {
+        flex-grow: 1;
+        margin-bottom: 1rem;
+      }
+
+      .repo-card p:last-of-type {
+        margin-bottom: 0;
+      }
+
+      .repo-link {
+        display: inline-block;
+        background: var(--sky-blue);
+        color: white;
+        padding: 0.7rem 1.5rem;
+        text-decoration: none;
+        border-radius: 8px;
+        margin-top: auto;
+        transition: background 0.3s ease;
+        text-align: center;
+      }
+
+      /* Technical details */
+      .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin: 2rem 0;
+      }
+
+      .tech-item {
+        background: var(--university-blue);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--university-blue);
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 4rem;
+        border-radius: 20px 20px 0 0;
+      }
+
+      .footer a {
+        color: var(--sky-blue);
+        text-decoration: none;
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .section {
+          padding: 2rem;
+        }
+
+        .nav ul {
+          gap: 1rem;
+        }
+
+        .repo-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stage {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .stage-image img {
+          width: 300px;
+        }
+
+        .stage-content {
+          margin-bottom: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .stage-image img {
+          width: 250px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <div class="container">
+        <img
+          src="logo.png"
+          alt="University of Glasgow Logo"
+          class="university-logo"
+          style="max-width: 650px"
+        />
+        <h1>AXIS: Anomaly eXplanations for Industrial control Systems</h1>
+        <p class="subtitle">
+          Leveraging Retrieval-Augmented Large Language Models for Generating
+          Context-Aware Anomaly Explanations in Industrial Control Systems
+        </p>
+        <p class="subtitle">Siddhartha Pratim Dutta | September 2025</p>
+        <div class="hero-badges">
+          <a href="https://www.gla.ac.uk/schools/computing/" class="badge"
+            >University of Glasgow | School of Computing Science</a
+          >
+          <a
+            href="https://www.gla.ac.uk/postgraduate/taught/computingscience/"
+            class="badge"
+            >MSc Computing Science 2025 | Summer Dissertation</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <div class="container">
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#framework">Framework</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#dissertation">Dissertation</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <section id="overview" class="section">
+        <h2>Project Overview</h2>
+        <p>
+          Industrial Control Systems (ICS) are increasingly vulnerable to
+          sophisticated cyber-physical attacks as they integrate with modern IT
+          infrastructure. While AI-based anomaly detection systems can identify
+          threats effectively, they provide only abstract numerical alerts that
+          lack the operational context human operators need for rapid response.
+        </p>
+        <p>
+          <strong>AXIS</strong> bridges this critical semantic gap by leveraging
+          Retrieval-Augmented Generation (RAG) with Large Language Models to
+          transform opaque numerical alerts into context-rich, actionable
+          natural language explanations that operators can understand and act
+          upon immediately.
+        </p>
+
+        <div class="tech-stack">
+          <span class="tech-item"
+            ><a
+              href="https://itrust.sutd.edu.sg/itrust-labs_datasets/dataset_info/"
+              target="_blank"
+              style="color: inherit; text-decoration: none"
+              >SWaT Testbed</a
+            ></span
+          >
+          <span class="tech-item"
+            ><a
+              href="https://www.python.org/"
+              target="_blank"
+              style="color: inherit; text-decoration: none"
+              >Python</a
+            ></span
+          >
+          <span class="tech-item"
+            ><a
+              href="https://www.tensorflow.org/"
+              target="_blank"
+              style="color: inherit; text-decoration: none"
+              >TensorFlow</a
+            ></span
+          >
+          <span class="tech-item"
+            ><a
+              href="https://www.llamaindex.ai/"
+              target="_blank"
+              style="color: inherit; text-decoration: none"
+              >LlamaIndex</a
+            ></span
+          >
+          <span class="tech-item"
+            ><a
+              href="https://platform.openai.com/docs/models/gpt-4o-mini"
+              target="_blank"
+              style="color: inherit; text-decoration: none"
+              >GPT-4o-mini</a
+            ></span
+          >
+          <span class="tech-item"
+            ><a
+              href="https://attack.mitre.org/matrices/ics/"
+              target="_blank"
+              style="color: inherit; text-decoration: none"
+              >MITRE ATT&CK</a
+            ></span
+          >
+          <span class="tech-item"
+            ><a
+              href="https://docs.llamaindex.ai/en/stable/optimizing/advanced_retrieval/advanced_retrieval/"
+              target="_blank"
+              style="color: inherit; text-decoration: none"
+              >Retrieval-Augmented Generation</a
+            ></span
+          >
+        </div>
+
+        <h3>The Semantic Gap in ICS Security</h3>
+        <p>
+          Current AI-based Industrial Anomaly Detection (IAD) systems face a
+          critical limitation: they excel at detecting anomalies but fail to
+          explain them in operationally meaningful ways. Operators receive
+          alerts like "anomaly detected at timestamp T with reconstruction error
+          0.85" without understanding:
+        </p>
+        <ul>
+          <li>
+            <strong>What component is affected</strong> and its role in the
+            process
+          </li>
+          <li>
+            <strong>Why the anomaly occurred</strong> and potential root causes
+          </li>
+          <li>
+            <strong>What the impact could be</strong> on system safety and
+            operations
+          </li>
+          <li>
+            <strong>How to respond effectively</strong> with specific mitigation
+            steps
+          </li>
+        </ul>
+
+        <h3>Limitations of Current Approaches</h3>
+        <p>
+          Existing explainable AI (XAI) methods provide feature attribution
+          scores but still fall short:
+        </p>
+        <ul>
+          <li>
+            Feature rankings lack narrative structure and operational context
+          </li>
+          <li>No connection to known adversarial tactics or attack patterns</li>
+          <li>Require significant domain expertise to interpret correctly</li>
+          <li>Increase cognitive load rather than reducing it</li>
+        </ul>
+      </section>
+
+      <section id="framework" class="section">
+        <h2>AXIS Framework</h2>
+        <p>
+          AXIS operates through a three-stage pipeline that systematically
+          transforms low-level anomaly detections into high-level operational
+          intelligence:
+        </p>
+        <div style="margin: 2rem 0">
+          <img
+            src="axis-framework.png"
+            alt="Detailed Stage-by-Stage Process Flow"
+            style="width: 100%; height: auto; border-radius: 10px"
+          />
+        </div>
+        <div class="framework-stages">
+          <div class="stage">
+            <div class="stage-content">
+              <h4>Stage I: Knowledge Base Curation</h4>
+              <p>
+                Curates a multi-source knowledge base from system documentation,
+                equipment specifications, and cybersecurity threat intelligence
+                (MITRE ATT&CK for ICS). Documents are parsed, normalized, and
+                embedded for semantic retrieval.
+              </p>
+              <p>
+                <strong>Implementation:</strong> Multi-source metadata
+                extraction and knowledge base construction from ICS
+                documentation and cybersecurity frameworks. Implements document
+                parsing, normalization, and vector embedding storage.
+              </p>
+              <p>
+                <strong>Tech Stack:</strong> Python, LlamaExtract, OpenAI
+                Embeddings, LlamaIndex
+              </p>
+            </div>
+            <div class="stage-image">
+              <img
+                src="stage-i.png"
+                alt="Stage I: Knowledge Base Curation"
+                onclick="openModal(this)"
+              />
+              <div class="stage-repo">
+                <a
+                  href="https://github.com/siddydutta/ics-anomaly-metadata"
+                  target="_blank"
+                  >View Repository →</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="stage">
+            <div class="stage-content">
+              <h4>Stage II: Anomaly Detection & Attribution</h4>
+              <p>
+                Uses LSTM autoencoders for unsupervised anomaly detection on
+                time-series ICS data. Employs ensemble attribution methods (MSE,
+                Saliency Maps, LEMNA) to identify influential system components.
+              </p>
+              <p>
+                <strong>Implementation:</strong> LSTM-based anomaly detection
+                with ensemble feature attribution methods. Fork of established
+                research codebase with modifications for AXIS integration and
+                improved attribution ensemble.
+              </p>
+              <p>
+                <strong>Tech Stack:</strong> Python, TensorFlow/Keras, LSTM,
+                SHAP, LEMNA
+              </p>
+            </div>
+            <div class="stage-image">
+              <img
+                src="stage-ii.png"
+                alt="Stage II: Anomaly Detection & Attribution"
+                onclick="openModal(this)"
+              />
+              <div class="stage-repo">
+                <a
+                  href="https://github.com/siddydutta/ics-anomaly-attribution"
+                  target="_blank"
+                  >View Repository →</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="stage">
+            <div class="stage-content">
+              <h4>Stage III: RAG-Enhanced Explanation</h4>
+              <p>
+                Synthesizes feature attributions with retrieved domain knowledge
+                using advanced RAG techniques. Generates structured natural
+                language explanations with root causes, impacts, and mitigation
+                strategies.
+              </p>
+              <p>
+                <strong>Implementation:</strong> Advanced retrieval-augmented
+                generation pipeline for context-aware explanation synthesis.
+                Implements metadata-driven retrieval, tactic inference, and
+                structured LLM prompting.
+              </p>
+              <p>
+                <strong>Tech Stack:</strong> Python, LlamaIndex, OpenAI
+                GPT-4o-mini, RAG
+              </p>
+            </div>
+            <div class="stage-image">
+              <img
+                src="stage-iii.png"
+                alt="Stage III: RAG-Enhanced Explanation"
+                onclick="openModal(this)"
+              />
+              <div class="stage-repo">
+                <a
+                  href="https://github.com/siddydutta/ics-anomaly-explanation"
+                  target="_blank"
+                  >View Repository →</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="results" class="section">
+        <h2>Key Results</h2>
+
+        <div class="results-grid">
+          <div class="metric-card">
+            <div class="metric-value">42%</div>
+            <div class="metric-label">
+              Overall Explanation Quality Improvement
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-value">150%</div>
+            <div class="metric-label">
+              Adversarial Context Accuracy Increase
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-value">33%</div>
+            <div class="metric-label">Reduction in Cognitive Load</div>
+          </div>
+        </div>
+
+        <h3>Quantitative Content Analysis</h3>
+        <p>
+          The metadata-enhanced RAG pipeline demonstrated superior explanation
+          quality across three key dimensions:
+        </p>
+        <ul>
+          <li>
+            <strong>Process Grounding Accuracy:</strong> 7.14% improvement
+            through targeted component retrieval
+          </li>
+          <li>
+            <strong>Physical Impact Accuracy:</strong> 25% improvement in
+            predicting operational consequences
+          </li>
+          <li>
+            <strong>Adversarial Context Accuracy:</strong> 150% improvement in
+            linking anomalies to attack techniques
+          </li>
+        </ul>
+
+        <div style="margin: 2rem 0">
+          <div style="overflow-x: auto">
+            <table
+              style="
+                width: 100%;
+                border-collapse: collapse;
+                margin: 0 auto;
+                background: white;
+                font-size: 1.1rem;
+              "
+            >
+              <thead>
+                <tr style="border-bottom: 2px solid #dee2e6">
+                  <th
+                    style="
+                      text-align: left;
+                      padding: 0.75rem 1rem;
+                      font-weight: 700;
+                      font-size: 1.15rem;
+                    "
+                  >
+                    Evaluation Metric
+                  </th>
+                  <th
+                    style="
+                      text-align: center;
+                      padding: 0.75rem 1rem;
+                      font-weight: 700;
+                    "
+                  >
+                    N-RAG<br /><span style="font-weight: 400; font-size: 0.95em"
+                      >(Avg. Score<br />out of 2)</span
+                    >
+                  </th>
+                  <th
+                    style="
+                      text-align: center;
+                      padding: 0.75rem 1rem;
+                      font-weight: 700;
+                    "
+                  >
+                    ME-RAG<br /><span
+                      style="font-weight: 400; font-size: 0.95em"
+                      >(Avg. Score<br />out of 2)</span
+                    >
+                  </th>
+                  <th
+                    style="
+                      text-align: center;
+                      padding: 0.75rem 1rem;
+                      font-weight: 700;
+                    "
+                  >
+                    Improvement<br /><span
+                      style="font-weight: 400; font-size: 0.95em"
+                      >of ME-RAG<br />over N-RAG (%)</span
+                    >
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #dee2e6">
+                  <td style="padding: 0.75rem 1rem">
+                    Process Grounding Accuracy
+                  </td>
+                  <td style="text-align: center">1.75</td>
+                  <td style="text-align: center">1.875</td>
+                  <td style="text-align: center">7.14&nbsp;%</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #dee2e6">
+                  <td style="padding: 0.75rem 1rem">
+                    Physical Impact Accuracy
+                  </td>
+                  <td style="text-align: center">1.00</td>
+                  <td style="text-align: center">1.25</td>
+                  <td style="text-align: center">25&nbsp;%</td>
+                </tr>
+                <tr style="border-bottom: 2px solid #dee2e6">
+                  <td style="padding: 0.75rem 1rem">
+                    Adversarial Context Accuracy
+                  </td>
+                  <td style="text-align: center">0.75</td>
+                  <td style="text-align: center">1.875</td>
+                  <td style="text-align: center">150&nbsp;%</td>
+                </tr>
+                <tr style="font-weight: 700; background: #f5f5f5">
+                  <td style="padding: 0.75rem 1rem">
+                    <strong>Overall Score</strong>
+                  </td>
+                  <td style="text-align: center">3.5</td>
+                  <td style="text-align: center">5</td>
+                  <td style="text-align: center">42&nbsp;%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h3>User-Centric Evaluation</h3>
+        <p>
+          User study with six participants showed significant improvements in
+          explanation usability:
+        </p>
+        <ul>
+          <li>
+            <strong>Confidence:</strong> Increased from 3.0 to 4.5 (5-point
+            scale)
+          </li>
+          <li>
+            <strong>Actionability:</strong> Rated 4.33 vs baseline raw XAI
+            output
+          </li>
+          <li><strong>Cognitive Load:</strong> Reduced from 3.5 to 2.33</li>
+          <li>
+            <strong>Trustworthiness:</strong> Perfect score (5.0) vs 3.5 for
+            naive approach
+          </li>
+        </ul>
+
+        <div style="margin: 2rem 0">
+          <img
+            src="../evaluation/user-evaluation-metrics.png"
+            alt="User Study Results Comparison"
+            style="width: 100%; height: auto; border-radius: 10px"
+          />
+        </div>
+
+        <h3>Operational Overhead Analysis</h3>
+        <p>
+          The advanced pipeline incurs manageable operational costs for
+          significantly improved quality:
+        </p>
+        <ul>
+          <li>
+            <strong>Latency:</strong> 34% increase (11.97s → 16.02s average)
+          </li>
+          <li>
+            <strong>Cost:</strong> 89% increase ($0.0003 → $0.0006 per
+            explanation)
+          </li>
+          <li>
+            <strong>Token Usage:</strong> 217% increase in input tokens for
+            richer context
+          </li>
+        </ul>
+
+        <div style="margin: 2rem 0">
+          <div style="overflow-x: auto">
+            <table
+              style="
+                width: 100%;
+                border-collapse: collapse;
+                margin: 0 auto;
+                background: white;
+                font-size: 1.1rem;
+              "
+            >
+              <thead>
+                <tr style="border-bottom: 2px solid #dee2e6">
+                  <th
+                    style="
+                      text-align: left;
+                      padding: 0.75rem 1rem;
+                      font-weight: 700;
+                      font-size: 1.15rem;
+                    "
+                  >
+                    Operational Metric
+                  </th>
+                  <th
+                    style="
+                      text-align: center;
+                      padding: 0.75rem 1rem;
+                      font-weight: 700;
+                    "
+                  >
+                    N-RAG<br /><span style="font-weight: 400; font-size: 0.95em"
+                      >(Average)</span
+                    >
+                  </th>
+                  <th
+                    style="
+                      text-align: center;
+                      padding: 0.75rem 1rem;
+                      font-weight: 700;
+                    "
+                  >
+                    ME-RAG<br /><span
+                      style="font-weight: 400; font-size: 0.95em"
+                      >(Average)</span
+                    >
+                  </th>
+                  <th
+                    style="
+                      text-align: center;
+                      padding: 0.75rem 1rem;
+                      font-weight: 700;
+                    "
+                  >
+                    Increase for<br /><span
+                      style="font-weight: 400; font-size: 0.95em"
+                      >ME-RAG over N-RAG (%)</span
+                    >
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #dee2e6">
+                  <td style="padding: 0.75rem 1rem">Latency (s)</td>
+                  <td style="text-align: center">11.97</td>
+                  <td style="text-align: center">16.02</td>
+                  <td style="text-align: center">33.82&nbsp;%</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #dee2e6">
+                  <td style="padding: 0.75rem 1rem">Input Tokens</td>
+                  <td style="text-align: center">446.875</td>
+                  <td style="text-align: center">1415.25</td>
+                  <td style="text-align: center">216.70&nbsp;%</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #dee2e6">
+                  <td style="padding: 0.75rem 1rem">Output Tokens</td>
+                  <td style="text-align: center">343.625</td>
+                  <td style="text-align: center">483.25</td>
+                  <td style="text-align: center">40.63&nbsp;%</td>
+                </tr>
+                <tr style="border-bottom: 2px solid #dee2e6">
+                  <td style="padding: 0.75rem 1rem">Monetary Cost ($)</td>
+                  <td style="text-align: center">0.0003375</td>
+                  <td style="text-align: center">0.0006375</td>
+                  <td style="text-align: center">88.89&nbsp;%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="dissertation" class="section">
+        <h2>Dissertation</h2>
+        <p>
+          The complete literature review, research methodology, implementation
+          details, and comprehensive evaluation are documented in the
+          dissertation submitted as part of the MSc Computing Science degree at
+          the University of Glasgow.
+        </p>
+
+        <div style="margin: 2rem 0">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 1rem;
+              flex-wrap: wrap;
+              gap: 1rem;
+            "
+          >
+            <h3 style="margin: 0; color: var(--university-blue)">
+              View Dissertation
+            </h3>
+            <a
+              href="2897074d.pdf"
+              target="_blank"
+              rel="noopener"
+              class="repo-link"
+              style="margin: 0"
+              >Download PDF</a
+            >
+          </div>
+
+          <embed
+            src="2897074d.pdf"
+            type="application/pdf"
+            width="100%"
+            height="800px"
+            style="border: 2px solid var(--border-light); border-radius: 10px"
+          />
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          <strong
+            >AXIS: Anomaly eXplanations for Industrial control Systems</strong
+          ><br />
+          Siddhartha Pratim Dutta | Supervised by
+          <a
+            href="https://www.gla.ac.uk/schools/computing/staff/marcocook/"
+            style="color: inherit; text-decoration: underline"
+            >Dr. Marco Cook</a
+          ><br />
+          MSc Computing Science | University of Glasgow | September 2025
+        </p>
+        <p>
+          <a
+            href="https://github.com/siddydutta"
+            style="color: inherit; text-decoration: underline"
+            >GitHub</a
+          >
+          |
+          <a
+            href="https://www.linkedin.com/in/siddydutta/"
+            style="color: inherit; text-decoration: underline"
+            >LinkedIn</a
+          >
+          |
+          <a
+            href="mailto:siddharthadutta+axis@protonmail.com"
+            style="color: inherit; text-decoration: underline"
+            >Email</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <!-- Modal for image enlargement -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <div class="modal-content">
+        <img id="modalImage" src="" alt="" />
+        <div id="modalCaption" class="modal-caption"></div>
+      </div>
+    </div>
+
+    <script>
+      function openModal(img) {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const caption = document.getElementById("modalCaption");
+
+        modal.style.display = "block";
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+        caption.textContent = img.alt;
+      }
+
+      function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+      }
+
+      // Close modal when pressing Escape key
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closeModal();
+        }
+      });
+    </script>
+  </body>
+</html>
